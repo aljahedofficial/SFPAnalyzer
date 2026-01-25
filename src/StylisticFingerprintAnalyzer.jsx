@@ -3870,7 +3870,7 @@ const StylisticFingerprintAnalyzer = () => {
 
                                             return `\\subsection{Stylistic Analysis Methodology}
 
-The corpus comprises ${texts.length} text samples with a combined total of ${totalWords.toLocaleString()} words (mean = ${avgWords.toLocaleString()} words per sample). Stylistic analysis was conducted using the Stylistic Fingerprint Analyzer, a browser-based tool implementing ${hasT6 ? '117' : hasT3 ? '65' : hasT2 ? '45' : '20'} linguistic features across ${hasT6 ? 'six' : hasT3 ? 'three' : hasT2 ? 'two' : 'one'} analytical tier${hasT6 || hasT3 || hasT2 ? 's' : ''}.
+The corpus comprises ${texts.length} text samples with a combined total of ${totalWords.toLocaleString()} words (mean = ${avgWords.toLocaleString()} words per sample). Stylistic analysis was conducted using the Stylistic False Positive Analyzer, a browser-based tool implementing ${hasT6 ? '117' : hasT3 ? '65' : hasT2 ? '45' : '20'} linguistic features across ${hasT6 ? 'six' : hasT3 ? 'three' : hasT2 ? 'two' : 'one'} analytical tier${hasT6 || hasT3 || hasT2 ? 's' : ''}.
 
 \\subsubsection{Foundational Metrics (Tier 1)}
 Lexical diversity was measured using Standardized Type-Token Ratio (STTR = ${avgSTTR}), while syntactic variability was assessed via Coefficient of Variation of sentence length (CV = ${avgCV}). Mean sentence length across the corpus was ${avgSentLen} words.

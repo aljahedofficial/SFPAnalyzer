@@ -1,6 +1,6 @@
 @echo off
 echo ========================================
-echo Stylistic Fingerprint Analyzer
+echo Stylistic False Positive Analyzer (SFP Analyzer)
 echo ========================================
 echo.
 echo Installing dependencies...
