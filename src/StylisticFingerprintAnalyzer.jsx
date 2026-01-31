@@ -17,6 +17,29 @@ import {
     XAxis, YAxis
 } from 'recharts';
 
+const THEMES = {
+    'Modern Dark': { bg: 'bg-slate-900', text: 'text-white', primary: '#3b82f6', secondary: '#8b5cf6', accent: '#ec4899' },
+    'Modern Light': { bg: 'bg-white', text: 'text-slate-900', primary: '#2563eb', secondary: '#7c3aed', accent: '#db2777' },
+    'Ocean Blue': { bg: 'bg-blue-50', text: 'text-blue-900', primary: '#0369a1', secondary: '#0284c7', accent: '#06b6d4' },
+    'Forest Green': { bg: 'bg-green-50', text: 'text-green-900', primary: '#15803d', secondary: '#16a34a', accent: '#22c55e' },
+    'Sunset': { bg: 'bg-orange-50', text: 'text-orange-900', primary: '#ea580c', secondary: '#f97316', accent: '#fb923c' },
+    'Purple Dream': { bg: 'bg-purple-50', text: 'text-purple-900', primary: '#7c3aed', secondary: '#a855f7', accent: '#d946ef' },
+    'Minimal': { bg: 'bg-gray-50', text: 'text-gray-900', primary: '#6366f1', secondary: '#8b5cf6', accent: '#a78bfa' },
+    'Vibrant Pink': { bg: 'bg-pink-50', text: 'text-pink-900', primary: '#be185d', secondary: '#db2777', accent: '#ec4899' },
+    'Teal Focus': { bg: 'bg-teal-50', text: 'text-teal-900', primary: '#0d9488', secondary: '#14b8a6', accent: '#2dd4bf' },
+    'Indigo Light': { bg: 'bg-indigo-50', text: 'text-indigo-900', primary: '#4f46e5', secondary: '#6366f1', accent: '#818cf8' },
+    'Emerald': { bg: 'bg-emerald-50', text: 'text-emerald-900', primary: '#059669', secondary: '#10b981', accent: '#34d399' },
+    'Rose': { bg: 'bg-rose-50', text: 'text-rose-900', primary: '#be123c', secondary: '#e11d48', accent: '#f43f5e' },
+    'Cyan': { bg: 'bg-cyan-50', text: 'text-cyan-900', primary: '#0891b2', secondary: '#06b6d4', accent: '#22d3ee' },
+    'Lime': { bg: 'bg-lime-50', text: 'text-lime-900', primary: '#65a30d', secondary: '#84cc16', accent: '#a3e635' },
+    'Sky': { bg: 'bg-sky-50', text: 'text-sky-900', primary: '#0284c7', secondary: '#0ea5e9', accent: '#38bdf8' },
+    'Fuchsia': { bg: 'bg-fuchsia-50', text: 'text-fuchsia-900', primary: '#a21caf', secondary: '#c2185d', accent: '#e91e63' },
+    'Slate Professional': { bg: 'bg-slate-100', text: 'text-slate-800', primary: '#334155', secondary: '#475569', accent: '#64748b' },
+    'Coral Reef': { bg: 'bg-red-50', text: 'text-red-900', primary: '#dc2626', secondary: '#f87171', accent: '#fca5a5' },
+    'Lavender': { bg: 'bg-purple-100', text: 'text-purple-900', primary: '#9333ea', secondary: '#a855f7', accent: '#d8b4fe' },
+    'Amber Warm': { bg: 'bg-amber-50', text: 'text-amber-900', primary: '#b45309', secondary: '#d97706', accent: '#f59e0b' }
+};
+
 const StylisticFingerprintAnalyzer = () => {
     const [texts, setTexts] = useState([]);
     const [activeTab, setActiveTab] = useState('individual');
