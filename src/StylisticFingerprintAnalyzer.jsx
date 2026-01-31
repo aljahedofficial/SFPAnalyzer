@@ -17,6 +17,29 @@ import {
     XAxis, YAxis
 } from 'recharts';
 
+const THEMES = {
+    'Modern Dark': { bg: 'bg-slate-900', text: 'text-white', primary: '#3b82f6', secondary: '#10b981', accent: '#f59e0b' },
+    'Modern Light': { bg: 'bg-white', text: 'text-slate-900', primary: '#2563eb', secondary: '#059669', accent: '#d97706' },
+    'Ocean Blue': { bg: 'bg-blue-50', text: 'text-blue-900', primary: '#0369a1', secondary: '#0891b2', accent: '#06b6d4' },
+    'Forest Green': { bg: 'bg-green-50', text: 'text-green-900', primary: '#065f46', secondary: '#047857', accent: '#10b981' },
+    'Sunset': { bg: 'bg-orange-50', text: 'text-orange-900', primary: '#ea580c', secondary: '#fb923c', accent: '#fbbf24' },
+    'Purple Dream': { bg: 'bg-purple-50', text: 'text-purple-900', primary: '#6d28d9', secondary: '#7c3aed', accent: '#a855f7' },
+    'Minimal': { bg: 'bg-gray-100', text: 'text-gray-800', primary: '#1f2937', secondary: '#374151', accent: '#6b7280' },
+    'Vibrant Pink': { bg: 'bg-pink-50', text: 'text-pink-900', primary: '#be185d', secondary: '#db2777', accent: '#f472b6' },
+    'Teal Focus': { bg: 'bg-teal-50', text: 'text-teal-900', primary: '#0d7377', secondary: '#14b8a6', accent: '#2dd4bf' },
+    'Indigo Light': { bg: 'bg-indigo-50', text: 'text-indigo-900', primary: '#312e81', secondary: '#4f46e5', accent: '#818cf8' },
+    'Emerald': { bg: 'bg-emerald-50', text: 'text-emerald-900', primary: '#064e3b', secondary: '#047857', accent: '#10b981' },
+    'Rose': { bg: 'bg-rose-50', text: 'text-rose-900', primary: '#831843', secondary: '#be184d', accent: '#f43f5e' },
+    'Cyan': { bg: 'bg-cyan-50', text: 'text-cyan-900', primary: '#164e63', secondary: '#06b6d4', accent: '#22d3ee' },
+    'Lime': { bg: 'bg-lime-50', text: 'text-lime-900', primary: '#365314', secondary: '#65a30d', accent: '#bef264' },
+    'Sky': { bg: 'bg-sky-50', text: 'text-sky-900', primary: '#0c4a6e', secondary: '#0284c7', accent: '#38bdf8' },
+    'Fuchsia': { bg: 'bg-fuchsia-50', text: 'text-fuchsia-900', primary: '#711c91', secondary: '#c2185b', accent: '#f472b6' },
+    'Slate Professional': { bg: 'bg-slate-100', text: 'text-slate-800', primary: '#1e293b', secondary: '#475569', accent: '#64748b' },
+    'Coral Reef': { bg: 'bg-red-50', text: 'text-red-900', primary: '#7c2d12', secondary: '#ea580c', accent: '#fb923c' },
+    'Lavender': { bg: 'bg-violet-50', text: 'text-violet-900', primary: '#4c1d95', secondary: '#7c3aed', accent: '#c4b5fd' },
+    'Amber Warm': { bg: 'bg-amber-50', text: 'text-amber-900', primary: '#78350f', secondary: '#b45309', accent: '#fcd34d' }
+};
+
 const StylisticFingerprintAnalyzer = () => {
     const [texts, setTexts] = useState([]);
     const [activeTab, setActiveTab] = useState('individual');
@@ -24,6 +47,7 @@ const StylisticFingerprintAnalyzer = () => {
     const [pastedText, setPastedText] = useState('');
     const [isProcessing, setIsProcessing] = useState(false);
     const [showDisclosure, setShowDisclosure] = useState(true);
+    const [currentTheme, setCurrentTheme] = useState('Modern Light');
     const [thresholds, setThresholds] = useState({
         cv: 0.25,
         sttr: 0.45,
@@ -2407,6 +2431,36 @@ const StylisticFingerprintAnalyzer = () => {
         }
     };
 
+    const exportChartToPNG = async (elementId, filename) => {
+        setIsProcessing(true);
+        try {
+            if (!window.html2canvas) {
+                await new Promise((resolve, reject) => {
+                    const script = document.createElement('script');
+                    script.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+                    script.onload = resolve;
+                    script.onerror = reject;
+                    document.head.appendChild(script);
+                });
+            }
+
+            const element = document.getElementById(elementId);
+            if (!element) return;
+
+            const canvas = await window.html2canvas(element, { backgroundColor: '#ffffff' });
+            const url = canvas.toDataURL('image/png');
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename || 'chart.png';
+            a.click();
+        } catch (error) {
+            console.error('Error exporting chart:', error);
+            alert('Failed to export chart. Please try again.');
+        } finally {
+            setIsProcessing(false);
+        }
+    };
+
     const currentText = texts[selectedTextIndex];
     const combinedStats = getCombinedStats();
 
@@ -2450,15 +2504,29 @@ const StylisticFingerprintAnalyzer = () => {
             )}
             
             <div className="max-w-7xl mx-auto">
-                {/* Header */}
-                <header className="mb-8">
-                    <h1 className="text-4xl font-bold text-slate-800 mb-2">
-                        Stylistic False Positive Analyzer - SPF Analyzer
-                    </h1>
-                    <p className="text-slate-600 italic">
-                        When Machines Mistake Humans: Stylistic Analysis of False Positives in AI Detection
-                    </p>
-                </header>
+                {/* Header with Theme Switcher */}
+                <div className="flex justify-between items-start mb-8">
+                    <div>
+                        <h1 className="text-4xl font-bold text-slate-800 mb-2">
+                            Stylistic False Positive Analyzer - SPF Analyzer
+                        </h1>
+                        <p className="text-slate-600 italic">
+                            When Machines Mistake Humans: Stylistic Analysis of False Positives in AI Detection
+                        </p>
+                    </div>
+                    <div className="bg-white rounded-lg shadow-md p-4 max-w-xs">
+                        <label className="block text-sm font-semibold text-slate-700 mb-2">Theme</label>
+                        <select
+                            value={currentTheme}
+                            onChange={(e) => setCurrentTheme(e.target.value)}
+                            className="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-500 text-sm"
+                        >
+                            {Object.keys(THEMES).map(theme => (
+                                <option key={theme} value={theme}>{theme}</option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
 
                 {/* Warning Banner */}
                 <style>{`
@@ -3748,6 +3816,167 @@ const StylisticFingerprintAnalyzer = () => {
                                         <div className="p-4 bg-indigo-50 rounded-lg">
                                             <div className="text-sm text-slate-600">Avg Metadiscourse</div>
                                             <div className="text-2xl font-bold text-indigo-700">{combinedStats.avgMetadiscourse}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Visualizations Grid */}
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                    {/* STTR Distribution Chart */}
+                                    <div className="bg-white rounded-lg shadow-md p-6">
+                                        <div className="flex justify-between items-center mb-4">
+                                            <h3 className="text-xl font-semibold text-slate-700">STTR Distribution</h3>
+                                            <button
+                                                onClick={() => exportChartToPNG('sttr-chart', 'sttr_distribution.png')}
+                                                className="px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600"
+                                            >
+                                                📥 PNG
+                                            </button>
+                                        </div>
+                                        <div id="sttr-chart">
+                                            <ResponsiveContainer width="100%" height={300}>
+                                                <BarChart data={texts.map((t, idx) => ({ filename: `T${idx + 1}`, sttr: parseFloat(t.sttr) }))}>
+                                                    <CartesianGrid strokeDasharray="3 3" />
+                                                    <XAxis dataKey="filename" angle={-45} textAnchor="end" height={60} />
+                                                    <YAxis />
+                                                    <Tooltip />
+                                                    <Bar dataKey="sttr" fill="#f97316" />
+                                                </BarChart>
+                                            </ResponsiveContainer>
+                                        </div>
+                                    </div>
+
+                                    {/* CV (Burstiness) Distribution */}
+                                    <div className="bg-white rounded-lg shadow-md p-6">
+                                        <div className="flex justify-between items-center mb-4">
+                                            <h3 className="text-xl font-semibold text-slate-700">CV (Burstiness) Distribution</h3>
+                                            <button
+                                                onClick={() => exportChartToPNG('cv-chart', 'cv_distribution.png')}
+                                                className="px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600"
+                                            >
+                                                📥 PNG
+                                            </button>
+                                        </div>
+                                        <div id="cv-chart">
+                                            <ResponsiveContainer width="100%" height={300}>
+                                                <BarChart data={texts.map((t, idx) => ({ filename: `T${idx + 1}`, cv: parseFloat(t.cv) }))}>
+                                                    <CartesianGrid strokeDasharray="3 3" />
+                                                    <XAxis dataKey="filename" angle={-45} textAnchor="end" height={60} />
+                                                    <YAxis />
+                                                    <Tooltip />
+                                                    <Bar dataKey="cv" fill="#ec4899" />
+                                                </BarChart>
+                                            </ResponsiveContainer>
+                                        </div>
+                                    </div>
+
+                                    {/* Metadiscourse Density */}
+                                    <div className="bg-white rounded-lg shadow-md p-6">
+                                        <div className="flex justify-between items-center mb-4">
+                                            <h3 className="text-xl font-semibold text-slate-700">Metadiscourse Density</h3>
+                                            <button
+                                                onClick={() => exportChartToPNG('md-chart', 'metadiscourse_density.png')}
+                                                className="px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600"
+                                            >
+                                                📥 PNG
+                                            </button>
+                                        </div>
+                                        <div id="md-chart">
+                                            <ResponsiveContainer width="100%" height={300}>
+                                                <BarChart data={texts.map((t, idx) => ({ filename: `T${idx + 1}`, md: t.metadiscourse.density }))}>
+                                                    <CartesianGrid strokeDasharray="3 3" />
+                                                    <XAxis dataKey="filename" angle={-45} textAnchor="end" height={60} />
+                                                    <YAxis />
+                                                    <Tooltip />
+                                                    <Bar dataKey="md" fill="#6366f1" />
+                                                </BarChart>
+                                            </ResponsiveContainer>
+                                        </div>
+                                    </div>
+
+                                    {/* Risk Assessment Pie Chart */}
+                                    <div className="bg-white rounded-lg shadow-md p-6">
+                                        <div className="flex justify-between items-center mb-4">
+                                            <h3 className="text-xl font-semibold text-slate-700">Risk Assessment Summary</h3>
+                                            <button
+                                                onClick={() => exportChartToPNG('risk-pie', 'risk_assessment.png')}
+                                                className="px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600"
+                                            >
+                                                📥 PNG
+                                            </button>
+                                        </div>
+                                        <div id="risk-pie">
+                                            <ResponsiveContainer width="100%" height={300}>
+                                                <PieChart>
+                                                    <Pie
+                                                        data={[
+                                                            { name: 'High Risk', value: texts.filter(t => assessRisk(t, thresholds).overallRisk.includes('High')).length },
+                                                            { name: 'Borderline', value: texts.filter(t => assessRisk(t, thresholds).overallRisk.includes('Borderline')).length },
+                                                            { name: 'Human-Like', value: texts.filter(t => assessRisk(t, thresholds).overallRisk.includes('Human')).length }
+                                                        ]}
+                                                        cx="50%"
+                                                        cy="50%"
+                                                        labelLine={false}
+                                                        label={({ name, value }) => `${name}: ${value}`}
+                                                        outerRadius={80}
+                                                        fill="#8884d8"
+                                                        dataKey="value"
+                                                    >
+                                                        <Cell fill="#ef4444" />
+                                                        <Cell fill="#f59e0b" />
+                                                        <Cell fill="#10b981" />
+                                                    </Pie>
+                                                    <Tooltip />
+                                                </PieChart>
+                                            </ResponsiveContainer>
+                                        </div>
+                                    </div>
+
+                                    {/* Word Count Distribution */}
+                                    <div className="bg-white rounded-lg shadow-md p-6">
+                                        <div className="flex justify-between items-center mb-4">
+                                            <h3 className="text-xl font-semibold text-slate-700">Word Count Distribution</h3>
+                                            <button
+                                                onClick={() => exportChartToPNG('words-chart', 'word_count_distribution.png')}
+                                                className="px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600"
+                                            >
+                                                📥 PNG
+                                            </button>
+                                        </div>
+                                        <div id="words-chart">
+                                            <ResponsiveContainer width="100%" height={300}>
+                                                <BarChart data={texts.map((t, idx) => ({ filename: `T${idx + 1}`, words: t.wordCount }))}>
+                                                    <CartesianGrid strokeDasharray="3 3" />
+                                                    <XAxis dataKey="filename" angle={-45} textAnchor="end" height={60} />
+                                                    <YAxis />
+                                                    <Tooltip />
+                                                    <Bar dataKey="words" fill="#10b981" />
+                                                </BarChart>
+                                            </ResponsiveContainer>
+                                        </div>
+                                    </div>
+
+                                    {/* Sentence Count Distribution */}
+                                    <div className="bg-white rounded-lg shadow-md p-6">
+                                        <div className="flex justify-between items-center mb-4">
+                                            <h3 className="text-xl font-semibold text-slate-700">Sentence Count Distribution</h3>
+                                            <button
+                                                onClick={() => exportChartToPNG('sentences-chart', 'sentence_count_distribution.png')}
+                                                className="px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600"
+                                            >
+                                                📥 PNG
+                                            </button>
+                                        </div>
+                                        <div id="sentences-chart">
+                                            <ResponsiveContainer width="100%" height={300}>
+                                                <LineChart data={texts.map((t, idx) => ({ filename: `T${idx + 1}`, sentences: t.sentenceCount }))}>
+                                                    <CartesianGrid strokeDasharray="3 3" />
+                                                    <XAxis dataKey="filename" angle={-45} textAnchor="end" height={60} />
+                                                    <YAxis />
+                                                    <Tooltip />
+                                                    <Line type="monotone" dataKey="sentences" stroke="#8b5cf6" />
+                                                </LineChart>
+                                            </ResponsiveContainer>
                                         </div>
                                     </div>
                                 </div>
