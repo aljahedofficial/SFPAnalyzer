@@ -3840,7 +3840,7 @@ const StylisticFingerprintAnalyzer = () => {
                                                     <XAxis dataKey="filename" angle={-45} textAnchor="end" height={60} />
                                                     <YAxis />
                                                     <Tooltip />
-                                                    <Bar dataKey="sttr" fill="#f97316" />
+                                                    <Bar dataKey="sttr" fill={theme.primary} />
                                                 </BarChart>
                                             </ResponsiveContainer>
                                         </div>
@@ -3864,7 +3864,7 @@ const StylisticFingerprintAnalyzer = () => {
                                                     <XAxis dataKey="filename" angle={-45} textAnchor="end" height={60} />
                                                     <YAxis />
                                                     <Tooltip />
-                                                    <Bar dataKey="cv" fill="#ec4899" />
+                                                    <Bar dataKey="cv" fill={theme.secondary} />
                                                 </BarChart>
                                             </ResponsiveContainer>
                                         </div>
@@ -3888,7 +3888,7 @@ const StylisticFingerprintAnalyzer = () => {
                                                     <XAxis dataKey="filename" angle={-45} textAnchor="end" height={60} />
                                                     <YAxis />
                                                     <Tooltip />
-                                                    <Bar dataKey="md" fill="#6366f1" />
+                                                    <Bar dataKey="md" fill={theme.accent} />
                                                 </BarChart>
                                             </ResponsiveContainer>
                                         </div>
@@ -3950,7 +3950,7 @@ const StylisticFingerprintAnalyzer = () => {
                                                     <XAxis dataKey="filename" angle={-45} textAnchor="end" height={60} />
                                                     <YAxis />
                                                     <Tooltip />
-                                                    <Bar dataKey="words" fill="#10b981" />
+                                                    <Bar dataKey="words" fill={theme.secondary} />
                                                 </BarChart>
                                             </ResponsiveContainer>
                                         </div>
@@ -3974,7 +3974,7 @@ const StylisticFingerprintAnalyzer = () => {
                                                     <XAxis dataKey="filename" angle={-45} textAnchor="end" height={60} />
                                                     <YAxis />
                                                     <Tooltip />
-                                                    <Line type="monotone" dataKey="sentences" stroke="#8b5cf6" />
+                                                    <Line type="monotone" dataKey="sentences" stroke={theme.primary} />
                                                 </LineChart>
                                             </ResponsiveContainer>
                                         </div>
