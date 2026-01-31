@@ -2409,6 +2409,7 @@ const StylisticFingerprintAnalyzer = () => {
 
     const currentText = texts[selectedTextIndex];
     const combinedStats = getCombinedStats();
+    const theme = THEMES[currentTheme];
 
     const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#a4de6c', '#d0ed57'];
 
