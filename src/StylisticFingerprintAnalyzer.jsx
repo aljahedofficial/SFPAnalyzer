@@ -2460,6 +2460,15 @@ const StylisticFingerprintAnalyzer = () => {
         }
     };
 
+    const downloadAllChartsPNG = async () => {
+        const chartElements = Array.from(document.querySelectorAll('[data-chart]'));
+        for (const chartElement of chartElements) {
+            const chartName = chartElement.getAttribute('data-chart') || 'chart';
+            await downloadChartPNG(chartElement, `${chartName}.png`);
+            await new Promise((resolve) => setTimeout(resolve, 300));
+        }
+    };
+
     const currentText = texts[selectedTextIndex];
     const combinedStats = getCombinedStats();
     const theme = THEMES[currentTheme];
@@ -4755,6 +4764,14 @@ All metrics were exported for statistical analysis, and threshold-based risk ass
                                             <h3 className="text-xl font-semibold text-slate-700">Export Data: {currentText.filename}</h3>
                                             <p className="text-sm text-slate-600">Download analysis results in multiple formats.</p>
                                         </div>
+                                    </div>
+                                    <div className="mb-6">
+                                        <button
+                                            onClick={downloadAllChartsPNG}
+                                            className="w-full px-4 py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-800 font-semibold"
+                                        >
+                                            master button for all png
+                                        </button>
                                     </div>
                                     <div className="text-center py-12">
                                         <p className="text-slate-500 mb-6">📥 Export functions available in the tabs above:</p>
