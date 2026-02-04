@@ -2917,15 +2917,7 @@ const StylisticFingerprintAnalyzer = () => {
                                     {/* Syntactic Burstiness */}
                                     <div className="bg-white rounded-lg shadow-md p-6">
                                         <div className="flex items-center justify-between mb-4">
-                                            <div className="flex items-center justify-between mb-4">
                                             <h3 className="text-xl font-semibold text-slate-700">Syntactic Burstiness</h3>
-                                            <button onClick={() => {
-                                                const chartDiv = document.querySelector('[data-chart="burstiness"]');
-                                                downloadChartPNG(chartDiv, 'burstiness.png');
-                                            }} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-semibold flex items-center gap-1">
-                                                📥 PNG
-                                            </button>
-                                        </div>
                                             <button onClick={() => {
                                                 const chartDiv = document.querySelector('[data-chart="burstiness"]');
                                                 downloadChartPNG(chartDiv, 'burstiness.png');
@@ -2949,15 +2941,7 @@ const StylisticFingerprintAnalyzer = () => {
                                     {/* Writer Identity Spectrum */}
                                     <div className="bg-white rounded-lg shadow-md p-6">
                                         <div className="flex items-center justify-between mb-4">
-                                            <div className="flex items-center justify-between mb-4">
                                             <h3 className="text-xl font-semibold text-slate-700">Writer Identity Spectrum</h3>
-                                            <button onClick={() => {
-                                                const chartDiv = document.querySelector('[data-chart="identity"]');
-                                                downloadChartPNG(chartDiv, 'writerIdentity.png');
-                                            }} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-semibold flex items-center gap-1">
-                                                📥 PNG
-                                            </button>
-                                        </div>
                                             <button onClick={() => {
                                                 const chartDiv = document.querySelector('[data-chart="identity"]');
                                                 downloadChartPNG(chartDiv, 'writer_identity.png');
@@ -3126,14 +3110,8 @@ const StylisticFingerprintAnalyzer = () => {
                                             {/* Stylometric Profile */}
                                             <div className="bg-white rounded-lg shadow-md p-6">
                                                 <div className="flex items-center justify-between mb-4">
-                                            <h3 className="text-xl font-semibold text-slate-700">Stylometric Profile</h3>
-                                            <button onClick={() => {
-                                                const chartDiv = document.querySelector('[data-chart="stylometricProfile"]');
-                                                downloadChartPNG(chartDiv, 'stylometricProfile.png');
-                                            }} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-semibold flex items-center gap-1">
-                                                📥 PNG
-                                            </button>
-                                        </div>
+                                                    <h3 className="text-xl font-semibold text-slate-700">Stylometric Profile</h3>
+                                                </div>
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                                     {/* Function Word Profile */}
                                                     <div>
@@ -3197,14 +3175,8 @@ const StylisticFingerprintAnalyzer = () => {
                                             {/* Lexical Sophistication */}
                                             <div className="bg-white rounded-lg shadow-md p-6">
                                                 <div className="flex items-center justify-between mb-4">
-                                            <h3 className="text-xl font-semibold text-slate-700">Lexical Sophistication</h3>
-                                            <button onClick={() => {
-                                                const chartDiv = document.querySelector('[data-chart="lexicalSophistication"]');
-                                                downloadChartPNG(chartDiv, 'lexicalSophistication.png');
-                                            }} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-semibold flex items-center gap-1">
-                                                📥 PNG
-                                            </button>
-                                        </div>
+                                                    <h3 className="text-xl font-semibold text-slate-700">Lexical Sophistication</h3>
+                                                </div>
                                                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
                                                     <div className="p-4 bg-emerald-50 rounded-lg">
                                                         <div className="text-sm text-slate-600">AWL Coverage</div>
@@ -3256,14 +3228,8 @@ const StylisticFingerprintAnalyzer = () => {
                                             {/* Syntactic Complexity */}
                                             <div className="bg-white rounded-lg shadow-md p-6">
                                                 <div className="flex items-center justify-between mb-4">
-                                            <h3 className="text-xl font-semibold text-slate-700">Syntactic Complexity</h3>
-                                            <button onClick={() => {
-                                                const chartDiv = document.querySelector('[data-chart="syntacticComplexity"]');
-                                                downloadChartPNG(chartDiv, 'syntacticComplexity.png');
-                                            }} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-semibold flex items-center gap-1">
-                                                📥 PNG
-                                            </button>
-                                        </div>
+                                                    <h3 className="text-xl font-semibold text-slate-700">Syntactic Complexity</h3>
+                                                </div>
                                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                                                     <div className="p-4 bg-violet-50 rounded-lg">
                                                         <div className="text-sm text-slate-600">Sent Length StdDev</div>
@@ -3311,14 +3277,8 @@ const StylisticFingerprintAnalyzer = () => {
                                             {/* Extended Metadiscourse */}
                                             <div className="bg-white rounded-lg shadow-md p-6">
                                                 <div className="flex items-center justify-between mb-4">
-                                            <h3 className="text-xl font-semibold text-slate-700">Extended Metadiscourse (per 1,000 words)</h3>
-                                            <button onClick={() => {
-                                                const chartDiv = document.querySelector('[data-chart="extendedMetadiscourse"]');
-                                                downloadChartPNG(chartDiv, 'extendedMetadiscourse.png');
-                                            }} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-semibold flex items-center gap-1">
-                                                📥 PNG
-                                            </button>
-                                        </div>
+                                                    <h3 className="text-xl font-semibold text-slate-700">Extended Metadiscourse (per 1,000 words)</h3>
+                                                </div>
                                                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                                                     <div className="p-4 bg-amber-50 rounded-lg">
                                                         <div className="text-sm text-slate-600">Code Glosses</div>
@@ -3351,14 +3311,8 @@ const StylisticFingerprintAnalyzer = () => {
                                             {/* Cohesion Features */}
                                             <div className="bg-white rounded-lg shadow-md p-6">
                                                 <div className="flex items-center justify-between mb-4">
-                                            <h3 className="text-xl font-semibold text-slate-700">Cohesion Features</h3>
-                                            <button onClick={() => {
-                                                const chartDiv = document.querySelector('[data-chart="cohesionFeatures"]');
-                                                downloadChartPNG(chartDiv, 'cohesionFeatures.png');
-                                            }} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-semibold flex items-center gap-1">
-                                                📥 PNG
-                                            </button>
-                                        </div>
+                                                    <h3 className="text-xl font-semibold text-slate-700">Cohesion Features</h3>
+                                                </div>
                                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                                     <div className="p-6 bg-blue-50 rounded-lg">
                                                         <div className="text-sm text-slate-600 mb-2">Lexical Repetition</div>
@@ -3391,14 +3345,8 @@ const StylisticFingerprintAnalyzer = () => {
                                             {/* Advanced Lexical Diversity */}
                                             <div className="bg-white rounded-lg shadow-md p-6">
                                                 <div className="flex items-center justify-between mb-4">
-                                            <h3 className="text-xl font-semibold text-slate-700">Advanced Lexical Diversity</h3>
-                                            <button onClick={() => {
-                                                const chartDiv = document.querySelector('[data-chart="advancedLexicalDiversity"]');
-                                                downloadChartPNG(chartDiv, 'advancedLexicalDiversity.png');
-                                            }} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-semibold flex items-center gap-1">
-                                                📥 PNG
-                                            </button>
-                                        </div>
+                                                    <h3 className="text-xl font-semibold text-slate-700">Advanced Lexical Diversity</h3>
+                                                </div>
                                                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                                                     <div className="p-4 bg-emerald-50 rounded-lg">
                                                         <div className="text-sm text-slate-600">VOCD-D</div>
@@ -3431,14 +3379,8 @@ const StylisticFingerprintAnalyzer = () => {
                                             {/* Linguistic Style */}
                                             <div className="bg-white rounded-lg shadow-md p-6">
                                                 <div className="flex items-center justify-between mb-4">
-                                            <h3 className="text-xl font-semibold text-slate-700">Linguistic Style</h3>
-                                            <button onClick={() => {
-                                                const chartDiv = document.querySelector('[data-chart="linguisticStyle"]');
-                                                downloadChartPNG(chartDiv, 'linguisticStyle.png');
-                                            }} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-semibold flex items-center gap-1">
-                                                📥 PNG
-                                            </button>
-                                        </div>
+                                                    <h3 className="text-xl font-semibold text-slate-700">Linguistic Style</h3>
+                                                </div>
                                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                                     <div className="p-4 bg-violet-50 rounded-lg">
                                                         <div className="text-sm text-slate-600">Open-Class TTR</div>
@@ -3466,14 +3408,8 @@ const StylisticFingerprintAnalyzer = () => {
                                             {/* Academic Writing Features */}
                                             <div className="bg-white rounded-lg shadow-md p-6">
                                                 <div className="flex items-center justify-between mb-4">
-                                            <h3 className="text-xl font-semibold text-slate-700">Academic Writing Features</h3>
-                                            <button onClick={() => {
-                                                const chartDiv = document.querySelector('[data-chart="academicWritingFeatures"]');
-                                                downloadChartPNG(chartDiv, 'academicWritingFeatures.png');
-                                            }} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-semibold flex items-center gap-1">
-                                                📥 PNG
-                                            </button>
-                                        </div>
+                                                    <h3 className="text-xl font-semibold text-slate-700">Academic Writing Features</h3>
+                                                </div>
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                                     <div>
                                                         <h4 className="font-medium text-slate-700 mb-3">Citation Patterns</h4>
@@ -3527,14 +3463,8 @@ const StylisticFingerprintAnalyzer = () => {
                                             {/* Readability Indices */}
                                             <div className="bg-white rounded-lg shadow-md p-6">
                                                 <div className="flex items-center justify-between mb-4">
-                                            <h3 className="text-xl font-semibold text-slate-700">Readability Indices</h3>
-                                            <button onClick={() => {
-                                                const chartDiv = document.querySelector('[data-chart="readabilityIndices"]');
-                                                downloadChartPNG(chartDiv, 'readabilityIndices.png');
-                                            }} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-semibold flex items-center gap-1">
-                                                📥 PNG
-                                            </button>
-                                        </div>
+                                                    <h3 className="text-xl font-semibold text-slate-700">Readability Indices</h3>
+                                                </div>
                                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                                     <div className="p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg">
                                                         <div className="text-sm text-slate-600 mb-2">Flesch Reading Ease</div>
