@@ -2432,6 +2432,34 @@ const StylisticFingerprintAnalyzer = () => {
         }
     };
 
+    // Download individual chart as PNG
+    const downloadChartPNG = async (chartElement, filename = 'chart.png') => {
+        if (!chartElement) return;
+
+        try {
+            // Load html2canvas from CDN if not already loaded
+            if (!window.html2canvas) {
+                await new Promise((resolve, reject) => {
+                    const script = document.createElement('script');
+                    script.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+                    script.onload = resolve;
+                    script.onerror = reject;
+                    document.head.appendChild(script);
+                });
+            }
+
+            const canvas = await window.html2canvas(chartElement, { backgroundColor: '#ffffff' });
+            const url = canvas.toDataURL('image/png');
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+        } catch (error) {
+            console.error('Error exporting chart to PNG:', error);
+            alert('Failed to download chart. Please try again.');
+        }
+    };
+
     const currentText = texts[selectedTextIndex];
     const combinedStats = getCombinedStats();
     const theme = THEMES[currentTheme];
@@ -2861,85 +2889,125 @@ const StylisticFingerprintAnalyzer = () => {
                                 <div ref={chartRef} className="space-y-6">
                                     {/* Syntactic Burstiness */}
                                     <div className="bg-white rounded-lg shadow-md p-6">
-                                        <h3 className="text-xl font-semibold text-slate-700 mb-4">Syntactic Burstiness</h3>
-                                        <ResponsiveContainer width="100%" height={300}>
-                                            <BarChart data={currentText.sentenceLengths.map((len, idx) => ({ sentence: idx + 1, length: len }))}>
-                                                <CartesianGrid strokeDasharray="3 3" />
-                                                <XAxis dataKey="sentence" label={{ value: 'Sentence Index', position: 'insideBottom', offset: -5 }} />
-                                                <YAxis label={{ value: 'Word Count', angle: -90, position: 'insideLeft' }} />
-                                                <Tooltip />
-                                                <Bar dataKey="length" fill="#8884d8" />
-                                            </BarChart>
-                                        </ResponsiveContainer>
+                                        <div className="flex items-center justify-between mb-4">
+                                            <h3 className="text-xl font-semibold text-slate-700">Syntactic Burstiness</h3>
+                                            <button onClick={() => {
+                                                const chartDiv = document.querySelector('[data-chart="burstiness"]');
+                                                downloadChartPNG(chartDiv, 'burstiness.png');
+                                            }} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-semibold flex items-center gap-1">
+                                                📥 PNG
+                                            </button>
+                                        </div>
+                                        <div data-chart="burstiness">
+                                            <ResponsiveContainer width="100%" height={300}>
+                                                <BarChart data={currentText.sentenceLengths.map((len, idx) => ({ sentence: idx + 1, length: len }))}>
+                                                    <CartesianGrid strokeDasharray="3 3" />
+                                                    <XAxis dataKey="sentence" label={{ value: 'Sentence Index', position: 'insideBottom', offset: -5 }} />
+                                                    <YAxis label={{ value: 'Word Count', angle: -90, position: 'insideLeft' }} />
+                                                    <Tooltip />
+                                                    <Bar dataKey="length" fill="#8884d8" />
+                                                </BarChart>
+                                            </ResponsiveContainer>
+                                        </div>
                                     </div>
 
                                     {/* Writer Identity Spectrum */}
                                     <div className="bg-white rounded-lg shadow-md p-6">
-                                        <h3 className="text-xl font-semibold text-slate-700 mb-4">Writer Identity Spectrum</h3>
-                                        <ResponsiveContainer width="100%" height={250}>
-                                            <BarChart
-                                                layout="vertical"
-                                                data={[
-                                                    { metric: 'STTR', value: parseFloat(currentText.sttr) },
-                                                    { metric: 'CV', value: parseFloat(currentText.cv) },
-                                                    { metric: 'Metadiscourse/100', value: currentText.metadiscourse.density / 100 }
-                                                ]}
-                                            >
-                                                <CartesianGrid strokeDasharray="3 3" />
-                                                <XAxis type="number" />
-                                                <YAxis dataKey="metric" type="category" />
-                                                <Tooltip />
-                                                <Bar dataKey="value" fill="#82ca9d" />
-                                                {/* Reference Lines for Thresholds */}
-                                                <ReferenceLine x={thresholds.sttr} stroke="#9333ea" strokeWidth={2} strokeDasharray="5 5" label={{ value: 'STTR Threshold', position: 'top', fill: '#9333ea', fontSize: 10 }} />
-                                                <ReferenceLine x={thresholds.cv} stroke="#f97316" strokeWidth={2} strokeDasharray="5 5" label={{ value: 'CV Threshold', position: 'top', fill: '#f97316', fontSize: 10 }} />
-                                                <ReferenceLine x={thresholds.metadiscourse / 100} stroke="#ec4899" strokeWidth={2} strokeDasharray="5 5" label={{ value: 'MD Threshold', position: 'top', fill: '#ec4899', fontSize: 10 }} />
-                                            </BarChart>
-                                        </ResponsiveContainer>
+                                        <div className="flex items-center justify-between mb-4">
+                                            <h3 className="text-xl font-semibold text-slate-700">Writer Identity Spectrum</h3>
+                                            <button onClick={() => {
+                                                const chartDiv = document.querySelector('[data-chart="identity"]');
+                                                downloadChartPNG(chartDiv, 'writer_identity.png');
+                                            }} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-semibold flex items-center gap-1">
+                                                📥 PNG
+                                            </button>
+                                        </div>
+                                        <div data-chart="identity">
+                                            <ResponsiveContainer width="100%" height={250}>
+                                                <BarChart
+                                                    layout="vertical"
+                                                    data={[
+                                                        { metric: 'STTR', value: parseFloat(currentText.sttr) },
+                                                        { metric: 'CV', value: parseFloat(currentText.cv) },
+                                                        { metric: 'Metadiscourse/100', value: currentText.metadiscourse.density / 100 }
+                                                    ]}
+                                                >
+                                                    <CartesianGrid strokeDasharray="3 3" />
+                                                    <XAxis type="number" />
+                                                    <YAxis dataKey="metric" type="category" />
+                                                    <Tooltip />
+                                                    <Bar dataKey="value" fill="#82ca9d" />
+                                                    {/* Reference Lines for Thresholds */}
+                                                    <ReferenceLine x={thresholds.sttr} stroke="#9333ea" strokeWidth={2} strokeDasharray="5 5" label={{ value: 'STTR Threshold', position: 'top', fill: '#9333ea', fontSize: 10 }} />
+                                                    <ReferenceLine x={thresholds.cv} stroke="#f97316" strokeWidth={2} strokeDasharray="5 5" label={{ value: 'CV Threshold', position: 'top', fill: '#f97316', fontSize: 10 }} />
+                                                    <ReferenceLine x={thresholds.metadiscourse / 100} stroke="#ec4899" strokeWidth={2} strokeDasharray="5 5" label={{ value: 'MD Threshold', position: 'top', fill: '#ec4899', fontSize: 10 }} />
+                                                </BarChart>
+                                            </ResponsiveContainer>
+                                        </div>
                                     </div>
 
                                     {/* Cumulative TTR Curve */}
                                     <div className="bg-white rounded-lg shadow-md p-6">
-                                        <h3 className="text-xl font-semibold text-slate-700 mb-4">Cumulative Type-Token Ratio Curve</h3>
-                                        <ResponsiveContainer width="100%" height={300}>
-                                            <LineChart data={currentText.cumulativeTTR}>
-                                                <CartesianGrid strokeDasharray="3 3" />
-                                                <XAxis dataKey="position" label={{ value: 'Word Position', position: 'insideBottom', offset: -5 }} />
-                                                <YAxis label={{ value: 'TTR', angle: -90, position: 'insideLeft' }} />
-                                                <Tooltip />
-                                                <Line type="monotone" dataKey="ttr" stroke="#8884d8" strokeWidth={2} />
-                                            </LineChart>
-                                        </ResponsiveContainer>
+                                        <div className="flex items-center justify-between mb-4">
+                                            <h3 className="text-xl font-semibold text-slate-700">Cumulative Type-Token Ratio Curve</h3>
+                                            <button onClick={() => {
+                                                const chartDiv = document.querySelector('[data-chart="ttrcurve"]');
+                                                downloadChartPNG(chartDiv, 'ttrcurve.png');
+                                            }} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-semibold flex items-center gap-1">
+                                                📥 PNG
+                                            </button>
+                                        </div>
+                                        <div data-chart="ttrcurve">
+                                            <ResponsiveContainer width="100%" height={300}>
+                                                <LineChart data={currentText.cumulativeTTR}>
+                                                    <CartesianGrid strokeDasharray="3 3" />
+                                                    <XAxis dataKey="position" label={{ value: 'Word Position', position: 'insideBottom', offset: -5 }} />
+                                                    <YAxis label={{ value: 'TTR', angle: -90, position: 'insideLeft' }} />
+                                                    <Tooltip />
+                                                    <Line type="monotone" dataKey="ttr" stroke="#8884d8" strokeWidth={2} />
+                                                </LineChart>
+                                            </ResponsiveContainer>
+                                        </div>
                                     </div>
 
                                     {/* Metadiscourse Distribution */}
                                     <div className="bg-white rounded-lg shadow-md p-6">
-                                        <h3 className="text-xl font-semibold text-slate-700 mb-4">Metadiscourse Distribution (Hyland 2005)</h3>
-                                        <ResponsiveContainer width="100%" height={300}>
-                                            <PieChart>
-                                                <Pie
-                                                    data={Object.entries(currentText.metadiscourse.counts)
-                                                        .map(([key, value]) => ({
-                                                            name: key.replace(/([A-Z])/g, ' $1').trim(),
-                                                            value
-                                                        }))
-                                                        .filter(item => item.value > 0)
-                                                    }
-                                                    cx="50%"
-                                                    cy="50%"
-                                                    labelLine={false}
-                                                    label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                                                    outerRadius={100}
-                                                    fill="#8884d8"
-                                                    dataKey="value"
-                                                >
-                                                    {Object.keys(currentText.metadiscourse.counts).map((entry, index) => (
-                                                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                                    ))}
-                                                </Pie>
-                                                <Tooltip />
-                                            </PieChart>
-                                        </ResponsiveContainer>
+                                        <div className="flex items-center justify-between mb-4">
+                                            <h3 className="text-xl font-semibold text-slate-700">Metadiscourse Distribution (Hyland 2005)</h3>
+                                            <button onClick={() => {
+                                                const chartDiv = document.querySelector('[data-chart="metadiscourse"]');
+                                                downloadChartPNG(chartDiv, 'metadiscourse.png');
+                                            }} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-semibold flex items-center gap-1">
+                                                📥 PNG
+                                            </button>
+                                        </div>
+                                        <div data-chart="metadiscourse">
+                                            <ResponsiveContainer width="100%" height={300}>
+                                                <PieChart>
+                                                    <Pie
+                                                        data={Object.entries(currentText.metadiscourse.counts)
+                                                            .map(([key, value]) => ({
+                                                                name: key.replace(/([A-Z])/g, ' $1').trim(),
+                                                                value
+                                                            }))
+                                                            .filter(item => item.value > 0)
+                                                        }
+                                                        cx="50%"
+                                                        cy="50%"
+                                                        labelLine={false}
+                                                        label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                                                        outerRadius={100}
+                                                        fill="#8884d8"
+                                                        dataKey="value"
+                                                    >
+                                                        {Object.keys(currentText.metadiscourse.counts).map((entry, index) => (
+                                                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                                        ))}
+                                                    </Pie>
+                                                    <Tooltip />
+                                                </PieChart>
+                                            </ResponsiveContainer>
+                                        </div>
                                     </div>
 
                                     {/* Sentence-Length Heat-Strip */}
