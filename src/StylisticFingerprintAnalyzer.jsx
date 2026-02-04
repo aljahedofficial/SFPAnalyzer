@@ -3111,6 +3111,12 @@ const StylisticFingerprintAnalyzer = () => {
                                             <div className="bg-white rounded-lg shadow-md p-6">
                                                 <div className="flex items-center justify-between mb-4">
                                                     <h3 className="text-xl font-semibold text-slate-700">Stylometric Profile</h3>
+                                                    <button onClick={() => {
+                                                        const chartDiv = document.querySelector('[data-chart="pronounDistribution"]');
+                                                        downloadChartPNG(chartDiv, 'pronounDistribution.png');
+                                                    }} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-semibold flex items-center gap-1">
+                                                        📥 PNG
+                                                    </button>
                                                 </div>
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                                     {/* Function Word Profile */}
@@ -3135,29 +3141,31 @@ const StylisticFingerprintAnalyzer = () => {
                                                     {/* Pronoun Distribution */}
                                                     <div>
                                                         <h4 className="font-medium text-slate-700 mb-3">Pronoun Distribution</h4>
-                                                        <ResponsiveContainer width="100%" height={200}>
-                                                            <PieChart>
-                                                                <Pie
-                                                                    data={[
-                                                                        { name: '1st Person', value: currentText.tier2.pronounDistribution.counts.first },
-                                                                        { name: '2nd Person', value: currentText.tier2.pronounDistribution.counts.second },
-                                                                        { name: '3rd Person', value: currentText.tier2.pronounDistribution.counts.third }
-                                                                    ].filter(item => item.value > 0)}
-                                                                    cx="50%"
-                                                                    cy="50%"
-                                                                    labelLine={false}
-                                                                    label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                                                                    outerRadius={80}
-                                                                    fill="#8884d8"
-                                                                    dataKey="value"
-                                                                >
-                                                                    {[0, 1, 2].map((entry, index) => (
-                                                                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                                                    ))}
-                                                                </Pie>
-                                                                <Tooltip />
-                                                            </PieChart>
-                                                        </ResponsiveContainer>
+                                                        <div data-chart="pronounDistribution">
+                                                            <ResponsiveContainer width="100%" height={200}>
+                                                                <PieChart>
+                                                                    <Pie
+                                                                        data={[
+                                                                            { name: '1st Person', value: currentText.tier2.pronounDistribution.counts.first },
+                                                                            { name: '2nd Person', value: currentText.tier2.pronounDistribution.counts.second },
+                                                                            { name: '3rd Person', value: currentText.tier2.pronounDistribution.counts.third }
+                                                                        ].filter(item => item.value > 0)}
+                                                                        cx="50%"
+                                                                        cy="50%"
+                                                                        labelLine={false}
+                                                                        label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                                                                        outerRadius={80}
+                                                                        fill="#8884d8"
+                                                                        dataKey="value"
+                                                                    >
+                                                                        {[0, 1, 2].map((entry, index) => (
+                                                                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                                                        ))}
+                                                                    </Pie>
+                                                                    <Tooltip />
+                                                                </PieChart>
+                                                            </ResponsiveContainer>
+                                                        </div>
                                                         <div className="grid grid-cols-2 gap-2 mt-2">
                                                             <div className="p-2 bg-slate-50 rounded text-center">
                                                                 <div className="text-xs text-slate-600">Hapax Legomena</div>
@@ -3199,29 +3207,31 @@ const StylisticFingerprintAnalyzer = () => {
                                                 {/* Word Frequency Bands */}
                                                 <div>
                                                     <h4 className="font-medium text-slate-700 mb-3">Word Frequency Bands</h4>
-                                                    <ResponsiveContainer width="100%" height={250}>
-                                                        <PieChart>
-                                                            <Pie
-                                                                data={[
-                                                                    { name: 'K1 (High Freq)', value: parseFloat(currentText.tier2.wordFreqBands.k1) },
-                                                                    { name: 'K2 (Academic)', value: parseFloat(currentText.tier2.wordFreqBands.k2) },
-                                                                    { name: 'Off-List', value: parseFloat(currentText.tier2.wordFreqBands.offList) }
-                                                                ].filter(item => item.value > 0)}
-                                                                cx="50%"
-                                                                cy="50%"
-                                                                labelLine={true}
-                                                                label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(1)}%`}
-                                                                outerRadius={90}
-                                                                fill="#8884d8"
-                                                                dataKey="value"
-                                                            >
-                                                                {[0, 1, 2].map((entry, index) => (
-                                                                    <Cell key={`cell-${index}`} fill={['#10b981', '#3b82f6', '#f59e0b'][index]} />
-                                                                ))}
-                                                            </Pie>
-                                                            <Tooltip />
-                                                        </PieChart>
-                                                    </ResponsiveContainer>
+                                                    <div data-chart="wordFrequencyBands">
+                                                        <ResponsiveContainer width="100%" height={250}>
+                                                            <PieChart>
+                                                                <Pie
+                                                                    data={[
+                                                                        { name: 'K1 (High Freq)', value: parseFloat(currentText.tier2.wordFreqBands.k1) },
+                                                                        { name: 'K2 (Academic)', value: parseFloat(currentText.tier2.wordFreqBands.k2) },
+                                                                        { name: 'Off-List', value: parseFloat(currentText.tier2.wordFreqBands.offList) }
+                                                                    ].filter(item => item.value > 0)}
+                                                                    cx="50%"
+                                                                    cy="50%"
+                                                                    labelLine={true}
+                                                                    label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(1)}%`}
+                                                                    outerRadius={90}
+                                                                    fill="#8884d8"
+                                                                    dataKey="value"
+                                                                >
+                                                                    {[0, 1, 2].map((entry, index) => (
+                                                                        <Cell key={`cell-${index}`} fill={['#10b981', '#3b82f6', '#f59e0b'][index]} />
+                                                                    ))}
+                                                                </Pie>
+                                                                <Tooltip />
+                                                            </PieChart>
+                                                        </ResponsiveContainer>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -3229,6 +3239,12 @@ const StylisticFingerprintAnalyzer = () => {
                                             <div className="bg-white rounded-lg shadow-md p-6">
                                                 <div className="flex items-center justify-between mb-4">
                                                     <h3 className="text-xl font-semibold text-slate-700">Syntactic Complexity</h3>
+                                                    <button onClick={() => {
+                                                        const chartDiv = document.querySelector('[data-chart="sentenceComplexityDistribution"]');
+                                                        downloadChartPNG(chartDiv, 'sentenceComplexityDistribution.png');
+                                                    }} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-semibold flex items-center gap-1">
+                                                        📥 PNG
+                                                    </button>
                                                 </div>
                                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                                                     <div className="p-4 bg-violet-50 rounded-lg">
@@ -3256,21 +3272,23 @@ const StylisticFingerprintAnalyzer = () => {
                                                 {/* Sentence Complexity Distribution */}
                                                 <div>
                                                     <h4 className="font-medium text-slate-700 mb-3">Sentence Complexity Distribution</h4>
-                                                    <ResponsiveContainer width="100%" height={250}>
-                                                        <BarChart
-                                                            data={[
-                                                                { type: 'Simple', count: currentText.tier2.sentComplexity.counts.simple, percentage: currentText.tier2.sentComplexity.percentages.simple },
-                                                                { type: 'Compound', count: currentText.tier2.sentComplexity.counts.compound, percentage: currentText.tier2.sentComplexity.percentages.compound },
-                                                                { type: 'Complex', count: currentText.tier2.sentComplexity.counts.complex, percentage: currentText.tier2.sentComplexity.percentages.complex }
-                                                            ]}
-                                                        >
-                                                            <CartesianGrid strokeDasharray="3 3" />
-                                                            <XAxis dataKey="type" />
-                                                            <YAxis label={{ value: 'Count', angle: -90, position: 'insideLeft' }} />
-                                                            <Tooltip formatter={(value, name, props) => [`${value} (${props.payload.percentage.toFixed(1)}%)`, 'Count']} />
-                                                            <Bar dataKey="count" fill="#8b5cf6" />
-                                                        </BarChart>
-                                                    </ResponsiveContainer>
+                                                    <div data-chart="sentenceComplexityDistribution">
+                                                        <ResponsiveContainer width="100%" height={250}>
+                                                            <BarChart
+                                                                data={[
+                                                                    { type: 'Simple', count: currentText.tier2.sentComplexity.counts.simple, percentage: currentText.tier2.sentComplexity.percentages.simple },
+                                                                    { type: 'Compound', count: currentText.tier2.sentComplexity.counts.compound, percentage: currentText.tier2.sentComplexity.percentages.compound },
+                                                                    { type: 'Complex', count: currentText.tier2.sentComplexity.counts.complex, percentage: currentText.tier2.sentComplexity.percentages.complex }
+                                                                ]}
+                                                            >
+                                                                <CartesianGrid strokeDasharray="3 3" />
+                                                                <XAxis dataKey="type" />
+                                                                <YAxis label={{ value: 'Count', angle: -90, position: 'insideLeft' }} />
+                                                                <Tooltip formatter={(value, name, props) => [`${value} (${props.payload.percentage.toFixed(1)}%)`, 'Count']} />
+                                                                <Bar dataKey="count" fill="#8b5cf6" />
+                                                            </BarChart>
+                                                        </ResponsiveContainer>
+                                                    </div>
                                                 </div>
                                             </div>
 
