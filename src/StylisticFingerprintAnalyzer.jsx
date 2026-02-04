@@ -2925,7 +2925,7 @@ const StylisticFingerprintAnalyzer = () => {
                                             <div className="flex items-center justify-between mb-4">
                                             <h3 className="text-xl font-semibold text-slate-700">Writer Identity Spectrum</h3>
                                             <button onClick={() => {
-                                                const chartDiv = document.querySelector('[data-chart="writerIdentity"]');
+                                                const chartDiv = document.querySelector('[data-chart="identity"]');
                                                 downloadChartPNG(chartDiv, 'writerIdentity.png');
                                             }} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-semibold flex items-center gap-1">
                                                 📥 PNG
@@ -2968,7 +2968,7 @@ const StylisticFingerprintAnalyzer = () => {
                                             <div className="flex items-center justify-between mb-4">
                                             <h3 className="text-xl font-semibold text-slate-700">Cumulative Type-Token Ratio Curve</h3>
                                             <button onClick={() => {
-                                                const chartDiv = document.querySelector('[data-chart="ttrCurve"]');
+                                                const chartDiv = document.querySelector('[data-chart="ttrcurve"]');
                                                 downloadChartPNG(chartDiv, 'ttrCurve.png');
                                             }} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-semibold flex items-center gap-1">
                                                 📥 PNG
