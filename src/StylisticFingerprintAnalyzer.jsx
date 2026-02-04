@@ -2448,24 +2448,42 @@ const StylisticFingerprintAnalyzer = () => {
                 });
             }
 
-            const canvas = await window.html2canvas(chartElement, { backgroundColor: '#ffffff' });
+            const canvas = await window.html2canvas(chartElement, { backgroundColor: '#ffffff', useCORS: true, allowTaint: true });
             const url = canvas.toDataURL('image/png');
             const a = document.createElement('a');
             a.href = url;
             a.download = filename;
+            document.body.appendChild(a);
             a.click();
+            document.body.removeChild(a);
         } catch (error) {
             console.error('Error exporting chart to PNG:', error);
-            alert('Failed to download chart. Please try again.');
+            alert(`Failed to download ${filename}. Please try again.`);
         }
     };
 
     const downloadAllChartsPNG = async () => {
-        const chartElements = Array.from(document.querySelectorAll('[data-chart]'));
-        for (const chartElement of chartElements) {
-            const chartName = chartElement.getAttribute('data-chart') || 'chart';
-            await downloadChartPNG(chartElement, `${chartName}.png`);
-            await new Promise((resolve) => setTimeout(resolve, 300));
+        try {
+            const chartElements = Array.from(document.querySelectorAll('[data-chart]'));
+            
+            if (chartElements.length === 0) {
+                alert('No charts found to download.');
+                return;
+            }
+
+            console.log(`Found ${chartElements.length} charts to download`);
+
+            for (const chartElement of chartElements) {
+                const chartName = chartElement.getAttribute('data-chart') || 'chart';
+                console.log(`Downloading chart: ${chartName}`);
+                await downloadChartPNG(chartElement, `${chartName}.png`);
+                await new Promise((resolve) => setTimeout(resolve, 500));
+            }
+
+            alert(`Successfully downloaded ${chartElements.length} charts!`);
+        } catch (error) {
+            console.error('Error downloading all charts:', error);
+            alert('Error downloading charts. Please check console for details.');
         }
     };
 
