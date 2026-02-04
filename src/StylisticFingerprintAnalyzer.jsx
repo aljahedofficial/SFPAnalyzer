@@ -40,68 +40,6 @@ const THEMES = {
     'Amber Warm': { bg: 'bg-amber-50', text: 'text-amber-900', primary: '#b45309', secondary: '#d97706', accent: '#f59e0b' }
 };
 
-const THESIS_ANALYSIS_ROWS = [
-    { id: '001', name: 'Average Sentence Length', value: '18.5 words', threshold: '15-25', status: '✓ Normal', interpretation: 'Within human range' },
-    { id: '002', name: 'Sentence Length Variation', value: '12.3 SD', threshold: '>8', status: '✓ Normal', interpretation: 'Good variation' },
-    { id: '003', name: 'Word Choice Profile', value: 'K1: 82%, K2: 12%, Off: 6%', threshold: 'K1 < 90%', status: '✓ Normal', interpretation: 'Diverse vocabulary' },
-    { id: '004', name: 'Coherence Pattern Density', value: '14.2 per 1000', threshold: '10-20', status: '✓ Normal', interpretation: 'Well-connected' },
-    { id: '005', name: 'NLP Processing Pipeline', value: '4/4 stages', threshold: '4 complete', status: '✓ Complete', interpretation: 'Fully processed' },
-    { id: '006', name: 'Cross-Detector Comparison', value: 'Turnitin: 45%, GPTZero: 62%, ZeroGPT: 38%', threshold: '< 50% agreement', status: '⚠️ Mixed', interpretation: 'Inconsistent flags' },
-    { id: '007', name: 'Corpus Metadata Display', value: '23/70 analyzed', threshold: '70 target', status: 'In progress', interpretation: '32.9% complete' },
-    { id: '008', name: 'Metadiscourse Density', value: '11.5 per 1000', threshold: '8-15', status: '✓ Normal', interpretation: 'Appropriate density' },
-    { id: '009', name: 'Standardized Type-Token Ratio', value: '0.52', threshold: '> 0.45', status: '✓ Normal', interpretation: 'Good diversity' },
-    { id: '010', name: 'Coefficient of Variation', value: '0.19', threshold: '> 0.25', status: '🚨 HIGH RISK', interpretation: 'Low burstiness' },
-    { id: '011', name: 'Function Word Frequency Profile', value: 'Top: the (6.2%), of (3.8%), and (2.9%)', threshold: 'z < |2|', status: '✓ Normal', interpretation: 'Human-like profile' },
-    { id: '012', name: 'Pronoun Distribution', value: '1st: 8%, 2nd: 2%, 3rd: 90%', threshold: '1st > 5%', status: '✓ Normal', interpretation: 'Present author' },
-    { id: '013', name: 'Academic Word List Coverage', value: '16.4%', threshold: '10-25%', status: '✓ Normal', interpretation: 'Appropriate' },
-    { id: '014', name: 'Readability Composite', value: 'Flesch: 42, FK: 12.3, Gunning: 13.1', threshold: 'FK 10-14', status: '✓ Normal', interpretation: 'Graduate level' },
-    { id: '015', name: 'Hedging and Boosting Ratio', value: 'Hedges: 3.2%, Boosters: 1.8%', threshold: 'Ratio 1-3:1', status: '✓ Normal', interpretation: 'Balanced stance' },
-    { id: '016', name: 'Hallidayan Process Type Analysis', value: 'Material: 35%, Mental: 28%, Relational: 37%', threshold: 'Rel < 50%', status: '✓ Normal', interpretation: 'Dynamic style' },
-    { id: '017', name: 'Passive Voice Density', value: '31.2 per 1000', threshold: '< 30', status: '⚠️ Elevated', interpretation: 'Academic style' },
-    { id: '018', name: 'Nominalization Density', value: '28.5 per 1000', threshold: '20-40', status: '✓ Normal', interpretation: 'Formal register' }
-];
-
-const THESIS_CHART_ROWS = [
-    { id: 'C-001', feature: '001', title: 'Average Sentence Length', type: 'Horizontal bar with mean marker', interaction: 'Hover: exact value' },
-    { id: 'C-002', feature: '002', title: 'Sentence Length Distribution', type: 'Box plot with outliers', interaction: 'Click: outlier details' },
-    { id: 'C-003', feature: '003', title: 'Word Choice by Frequency Band', type: 'Stacked area chart', interaction: 'Hover: band percentages' },
-    { id: 'C-004', feature: '004', title: 'Coherence Connector Network', type: 'Network graph', interaction: 'Drag: rearrange nodes' },
-    { id: 'C-005', feature: '005', title: 'NLP Pipeline Status', type: 'Vertical flow diagram', interaction: 'Click: stage details' },
-    { id: 'C-006', feature: '006', title: 'Detector Agreement Comparison', type: 'Venn diagram + table', interaction: 'Hover: agreement %' },
-    { id: 'C-007', feature: '007', title: 'Corpus Progress', type: 'Progress ring + pie', interaction: 'Click: source breakdown' },
-    { id: 'C-008', feature: '008', title: 'Metadiscourse Categories', type: 'Grouped bar chart', interaction: 'Hover: category counts' },
-    { id: 'C-009', feature: '009', title: 'STTR Cumulative Curve', type: 'Line chart with plateau', interaction: 'Zoom: segment detail' },
-    { id: 'C-010', feature: '010', title: 'Burstiness Gauge', type: 'Gauge meter 0-1.0', interaction: 'Color: red zone < 0.25' },
-    { id: 'C-011', feature: '011', title: 'Function Word Top 50', type: 'Horizontal bar chart', interaction: 'Scroll: full ranking' },
-    { id: 'C-012', feature: '012', title: 'Pronoun Person Distribution', type: 'Donut chart', interaction: 'Click: segment explode' },
-    { id: 'C-013', feature: '013', title: 'AWL Coverage Ring', type: 'Progress ring', interaction: 'Hover: token examples' },
-    { id: 'C-014', feature: '014', title: 'Readability Trio', type: 'Three score cards', interaction: 'Toggle: formula details' },
-    { id: 'C-015', feature: '015', title: 'Hedging vs Boosting', type: 'Lollipop chart', interaction: 'Hover: context examples' },
-    { id: 'C-016', feature: '016', title: 'Process Type Flow', type: 'Stacked area chart', interaction: 'Play: animation over text' },
-    { id: 'C-017', feature: '017', title: 'Passive Voice Bar', type: 'Vertical bar', interaction: 'Hover: passive examples' },
-    { id: 'C-018', feature: '018', title: 'Nominalization Trend', type: 'Line + histogram', interaction: 'Brush: select range' }
-];
-
-const THESIS_EXPORT_ROWS = [
-    { id: 'E-001', feature: '001', name: 'Average Sentence Length', formats: 'CSV, PNG, LaTeX', default: 'CSV', bulk: '✓' },
-    { id: 'E-002', feature: '002', name: 'Sentence Length Variation', formats: 'CSV, PNG, XLSX, LaTeX', default: 'CSV', bulk: '✓' },
-    { id: 'E-003', feature: '003', name: 'Word Choice Profile', formats: 'CSV, PNG, LaTeX, PDF', default: 'CSV', bulk: '✓' },
-    { id: 'E-004', feature: '004', name: 'Coherence Pattern Density', formats: 'CSV, PNG, LaTeX', default: 'CSV', bulk: '✓' },
-    { id: 'E-005', feature: '005', name: 'NLP Processing Pipeline', formats: 'TXT, CSV, JSON', default: 'JSON', bulk: '✓' },
-    { id: 'E-006', feature: '006', name: 'Cross-Detector Comparison', formats: 'CSV, PNG, PDF, XLSX', default: 'CSV', bulk: '✓' },
-    { id: 'E-007', feature: '007', name: 'Corpus Metadata Display', formats: 'CSV, PNG, XLSX', default: 'XLSX', bulk: '✗' },
-    { id: 'E-008', feature: '008', name: 'Metadiscourse Density', formats: 'CSV, PNG, LaTeX, PDF', default: 'CSV', bulk: '✓' },
-    { id: 'E-009', feature: '009', name: 'Standardized Type-Token Ratio', formats: 'CSV, PNG, LaTeX', default: 'CSV', bulk: '✓' },
-    { id: 'E-010', feature: '010', name: 'Coefficient of Variation', formats: 'CSV, PNG, LaTeX, PDF', default: 'PNG', bulk: '✓' },
-    { id: 'E-011', feature: '011', name: 'Function Word Frequency Profile', formats: 'CSV, PNG, LaTeX', default: 'CSV', bulk: '✓' },
-    { id: 'E-012', feature: '012', name: 'Pronoun Distribution', formats: 'CSV, PNG, XLSX, LaTeX', default: 'CSV', bulk: '✓' },
-    { id: 'E-013', feature: '013', name: 'Academic Word List Coverage', formats: 'CSV, PNG, PDF', default: 'CSV', bulk: '✓' },
-    { id: 'E-014', feature: '014', name: 'Readability Composite', formats: 'CSV, PNG, LaTeX', default: 'CSV', bulk: '✓' },
-    { id: 'E-015', feature: '015', name: 'Hedging and Boosting Ratio', formats: 'CSV, PNG, PDF', default: 'CSV', bulk: '✓' },
-    { id: 'E-016', feature: '016', name: 'Hallidayan Process Type Analysis', formats: 'CSV, PNG, LaTeX', default: 'CSV', bulk: '✓' },
-    { id: 'E-017', feature: '017', name: 'Passive Voice Density', formats: 'CSV, PNG, XLSX, LaTeX', default: 'CSV', bulk: '✓' },
-    { id: 'E-018', feature: '018', name: 'Nominalization Density', formats: 'CSV, PNG, LaTeX', default: 'CSV', bulk: '✓' }
-];
 
 const StylisticFingerprintAnalyzer = () => {
     const [texts, setTexts] = useState([]);
@@ -4479,45 +4417,69 @@ All metrics were exported for statistical analysis, and threshold-based risk ass
                         })()}
 
                         {/* Thesis: Analysis Tab */}
-                        {activeTab === 'thesis-analysis' && texts.length > 0 && (
-                            <div className="space-y-6">
-                                <div className="bg-white rounded-lg shadow-md p-6">
-                                    <div className="flex items-center justify-between gap-4 mb-4">
-                                        <div>
-                                            <h3 className="text-xl font-semibold text-slate-700">Thesis Specification: Analysis (Numbers)</h3>
-                                            <p className="text-sm text-slate-600">Example values and thresholds aligned to the thesis specification.</p>
+                        {activeTab === 'thesis-analysis' && texts.length > 0 && (() => {
+                            const text = currentText;
+                            const analysisRows = [
+                                { id: '001', name: 'Average Sentence Length', value: `${text.avgSentenceLength} words`, threshold: '15-25', status: text.avgSentenceLength >= 15 && text.avgSentenceLength <= 25 ? '✓ Normal' : '⚠️ Review', interpretation: text.avgSentenceLength >= 15 && text.avgSentenceLength <= 25 ? 'Within human range' : 'Outside typical range' },
+                                { id: '002', name: 'Sentence Length Variation (SD)', value: `${text.tier2?.sentLengthStdDev || 'N/A'}`, threshold: '>8', status: parseFloat(text.tier2?.sentLengthStdDev || 0) > 8 ? '✓ Normal' : '⚠️ Low', interpretation: parseFloat(text.tier2?.sentLengthStdDev || 0) > 8 ? 'Good variation' : 'Low variation' },
+                                { id: '003', name: 'Word Choice Profile', value: `K1: ${text.tier2?.wordFreqBands?.k1 || 'N/A'}%, K2: ${text.tier2?.wordFreqBands?.k2 || 'N/A'}%, Off: ${text.tier2?.wordFreqBands?.offList || 'N/A'}%`, threshold: 'K1 < 90%', status: parseFloat(text.tier2?.wordFreqBands?.k1 || 100) < 90 ? '✓ Normal' : '⚠️ Review', interpretation: 'Vocabulary distribution' },
+                                { id: '004', name: 'Metadiscourse Density', value: `${text.metadiscourse} per 1000`, threshold: '8-15', status: text.metadiscourse >= 8 && text.metadiscourse <= 15 ? '✓ Normal' : '⚠️ Review', interpretation: text.metadiscourse >= 8 ? 'Well-connected' : 'Low connectivity' },
+                                { id: '005', name: 'Standardized Type-Token Ratio', value: text.sttr, threshold: '> 0.45', status: parseFloat(text.sttr) > 0.45 ? '✓ Normal' : '⚠️ Low', interpretation: parseFloat(text.sttr) > 0.45 ? 'Good diversity' : 'Low diversity' },
+                                { id: '006', name: 'Coefficient of Variation', value: text.cv, threshold: `> ${thresholds.cv}`, status: parseFloat(text.cv) > thresholds.cv ? '✓ Normal' : '🚨 HIGH RISK', interpretation: parseFloat(text.cv) > thresholds.cv ? 'Human-like burstiness' : 'AI-like monotony' },
+                                { id: '007', name: 'Academic Word List Coverage', value: `${text.tier2?.awlCoverage || 'N/A'}%`, threshold: '10-25%', status: text.tier2?.awlCoverage >= 10 && text.tier2?.awlCoverage <= 25 ? '✓ Normal' : '⚠️ Review', interpretation: 'Academic vocabulary' },
+                                { id: '008', name: 'Lexical Density', value: `${text.tier2?.lexicalDensity || 'N/A'}%`, threshold: '40-60%', status: text.tier2?.lexicalDensity >= 40 && text.tier2?.lexicalDensity <= 60 ? '✓ Normal' : '⚠️ Review', interpretation: 'Content word ratio' },
+                                { id: '009', name: 'Pronoun Distribution', value: `1st: ${text.tier2?.pronounDistribution?.first || 0}%, 3rd: ${text.tier2?.pronounDistribution?.third || 0}%`, threshold: '1st > 0%', status: text.tier2?.pronounDistribution?.first > 0 ? '✓ Normal' : '⚠️ Impersonal', interpretation: 'Author presence' },
+                                { id: '010', name: 'Hapax Legomena Ratio', value: `${text.tier2?.hapaxRatio || 'N/A'}%`, threshold: '40-60%', status: '✓ Calculated', interpretation: 'Unique word usage' },
+                                { id: '011', name: 'Average Word Length', value: `${text.tier2?.avgWordLength || 'N/A'} chars`, threshold: '4-6', status: text.tier2?.avgWordLength >= 4 && text.tier2?.avgWordLength <= 6 ? '✓ Normal' : '⚠️ Review', interpretation: 'Lexical complexity' },
+                                { id: '012', name: 'Multi-Syllabic Word Ratio', value: `${text.tier2?.multiSyllabicRatio || 'N/A'}%`, threshold: '15-30%', status: '✓ Calculated', interpretation: 'Phonological complexity' },
+                                { id: '013', name: 'Subordination Depth', value: text.tier2?.subordinationDepth || 'N/A', threshold: '1.5-3', status: '✓ Calculated', interpretation: 'Syntactic embedding' },
+                                { id: '014', name: 'Clauses Per Sentence', value: text.tier2?.clausesPerSentence || 'N/A', threshold: '2-4', status: '✓ Calculated', interpretation: 'Sentence complexity' },
+                                { id: '015', name: 'T-Unit Length', value: `${text.tier2?.tUnitLength || 'N/A'} words`, threshold: '12-20', status: '✓ Calculated', interpretation: 'Independent clause length' },
+                                { id: '016', name: 'Dependent Clause Ratio', value: `${text.tier2?.depClauseRatio || 'N/A'}%`, threshold: '20-40%', status: '✓ Calculated', interpretation: 'Subordination frequency' },
+                                { id: '017', name: 'Lexical Repetition', value: `${text.tier2?.lexicalRepetition || 'N/A'}%`, threshold: '<40%', status: '✓ Calculated', interpretation: 'Word reuse patterns' },
+                                { id: '018', name: 'Flesch Reading Ease', value: text.tier3?.fleschReadingEase || 'N/A', threshold: '30-60', status: text.tier3?.fleschReadingEase ? '✓ Calculated' : 'N/A', interpretation: 'Readability score' }
+                            ];
+
+                            return (
+                                <div className="space-y-6">
+                                    <div className="bg-white rounded-lg shadow-md p-6">
+                                        <div className="flex items-center justify-between gap-4 mb-4">
+                                            <div>
+                                                <h3 className="text-xl font-semibold text-slate-700">Detailed Analysis: {text.filename}</h3>
+                                                <p className="text-sm text-slate-600">Real-time linguistic feature analysis from uploaded text.</p>
+                                            </div>
+                                            <span className="text-xs text-slate-500">Word Count: {text.wordCount}</span>
                                         </div>
-                                        <span className="text-xs text-slate-500">Source: prompt.txt</span>
-                                    </div>
-                                    <div className="overflow-x-auto">
-                                        <table className="min-w-full text-sm">
-                                            <thead className="bg-slate-50 text-slate-600">
-                                                <tr>
-                                                    <th className="px-4 py-2 text-left">Feature #</th>
-                                                    <th className="px-4 py-2 text-left">Feature Name</th>
-                                                    <th className="px-4 py-2 text-left">Example Value</th>
-                                                    <th className="px-4 py-2 text-left">Threshold</th>
-                                                    <th className="px-4 py-2 text-left">Status</th>
-                                                    <th className="px-4 py-2 text-left">Interpretation</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {THESIS_ANALYSIS_ROWS.map((row) => (
-                                                    <tr key={row.id} className="border-b last:border-b-0">
-                                                        <td className="px-4 py-2 font-mono text-slate-700">{row.id}</td>
-                                                        <td className="px-4 py-2 text-slate-700">{row.name}</td>
-                                                        <td className="px-4 py-2 text-slate-600">{row.value}</td>
-                                                        <td className="px-4 py-2 text-slate-600">{row.threshold}</td>
-                                                        <td className="px-4 py-2 text-slate-700">{row.status}</td>
-                                                        <td className="px-4 py-2 text-slate-600">{row.interpretation}</td>
+                                        <div className="overflow-x-auto">
+                                            <table className="min-w-full text-sm">
+                                                <thead className="bg-slate-50 text-slate-600">
+                                                    <tr>
+                                                        <th className="px-4 py-2 text-left">Feature #</th>
+                                                        <th className="px-4 py-2 text-left">Feature Name</th>
+                                                        <th className="px-4 py-2 text-left">Actual Value</th>
+                                                        <th className="px-4 py-2 text-left">Threshold</th>
+                                                        <th className="px-4 py-2 text-left">Status</th>
+                                                        <th className="px-4 py-2 text-left">Interpretation</th>
                                                     </tr>
-                                                ))}
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tbody>
+                                                    {analysisRows.map((row) => (
+                                                        <tr key={row.id} className="border-b last:border-b-0 hover:bg-slate-50">
+                                                            <td className="px-4 py-2 font-mono text-slate-700">{row.id}</td>
+                                                            <td className="px-4 py-2 text-slate-700">{row.name}</td>
+                                                            <td className="px-4 py-2 text-slate-900 font-semibold">{row.value}</td>
+                                                            <td className="px-4 py-2 text-slate-600">{row.threshold}</td>
+                                                            <td className="px-4 py-2 text-slate-700">{row.status}</td>
+                                                            <td className="px-4 py-2 text-slate-600">{row.interpretation}</td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        )}
+                            );
+                        })()}
 
                         {/* Thesis: Charts Tab */}
                         {activeTab === 'thesis-charts' && texts.length > 0 && (
@@ -4525,34 +4487,20 @@ All metrics were exported for statistical analysis, and threshold-based risk ass
                                 <div className="bg-white rounded-lg shadow-md p-6">
                                     <div className="flex items-center justify-between gap-4 mb-4">
                                         <div>
-                                            <h3 className="text-xl font-semibold text-slate-700">Thesis Specification: Charts (Visualizations)</h3>
-                                            <p className="text-sm text-slate-600">Planned chart types and interactions by feature.</p>
+                                            <h3 className="text-xl font-semibold text-slate-700">Feature Visualizations</h3>
+                                            <p className="text-sm text-slate-600">Charts available in the Dashboard and Individual Files tabs above.</p>
                                         </div>
-                                        <span className="text-xs text-slate-500">Source: prompt.txt</span>
                                     </div>
-                                    <div className="overflow-x-auto">
-                                        <table className="min-w-full text-sm">
-                                            <thead className="bg-slate-50 text-slate-600">
-                                                <tr>
-                                                    <th className="px-4 py-2 text-left">Chart ID</th>
-                                                    <th className="px-4 py-2 text-left">Feature #</th>
-                                                    <th className="px-4 py-2 text-left">Chart Title</th>
-                                                    <th className="px-4 py-2 text-left">Chart Type</th>
-                                                    <th className="px-4 py-2 text-left">Interaction</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {THESIS_CHART_ROWS.map((row) => (
-                                                    <tr key={row.id} className="border-b last:border-b-0">
-                                                        <td className="px-4 py-2 font-mono text-slate-700">{row.id}</td>
-                                                        <td className="px-4 py-2 font-mono text-slate-700">{row.feature}</td>
-                                                        <td className="px-4 py-2 text-slate-700">{row.title}</td>
-                                                        <td className="px-4 py-2 text-slate-600">{row.type}</td>
-                                                        <td className="px-4 py-2 text-slate-600">{row.interaction}</td>
-                                                    </tr>
-                                                ))}
-                                            </tbody>
-                                        </table>
+                                    <div className="text-center py-12">
+                                        <p className="text-slate-500 mb-4">📊 Visual charts for this file are available in:</p>
+                                        <div className="space-y-2">
+                                            <button onClick={() => setActiveTab('individual')} className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 mr-2">
+                                                Individual Files Tab
+                                            </button>
+                                            <button onClick={() => setActiveTab('dashboard')} className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
+                                                Dashboard Tab
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -4564,36 +4512,29 @@ All metrics were exported for statistical analysis, and threshold-based risk ass
                                 <div className="bg-white rounded-lg shadow-md p-6">
                                     <div className="flex items-center justify-between gap-4 mb-4">
                                         <div>
-                                            <h3 className="text-xl font-semibold text-slate-700">Thesis Specification: Export (Downloads)</h3>
-                                            <p className="text-sm text-slate-600">Planned export formats and defaults per feature.</p>
+                                            <h3 className="text-xl font-semibold text-slate-700">Export Data: {currentText.filename}</h3>
+                                            <p className="text-sm text-slate-600">Download analysis results in multiple formats.</p>
                                         </div>
-                                        <span className="text-xs text-slate-500">Source: prompt.txt</span>
                                     </div>
-                                    <div className="overflow-x-auto">
-                                        <table className="min-w-full text-sm">
-                                            <thead className="bg-slate-50 text-slate-600">
-                                                <tr>
-                                                    <th className="px-4 py-2 text-left">Export ID</th>
-                                                    <th className="px-4 py-2 text-left">Feature #</th>
-                                                    <th className="px-4 py-2 text-left">Feature Name</th>
-                                                    <th className="px-4 py-2 text-left">Available Formats</th>
-                                                    <th className="px-4 py-2 text-left">Default</th>
-                                                    <th className="px-4 py-2 text-left">Bulk</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {THESIS_EXPORT_ROWS.map((row) => (
-                                                    <tr key={row.id} className="border-b last:border-b-0">
-                                                        <td className="px-4 py-2 font-mono text-slate-700">{row.id}</td>
-                                                        <td className="px-4 py-2 font-mono text-slate-700">{row.feature}</td>
-                                                        <td className="px-4 py-2 text-slate-700">{row.name}</td>
-                                                        <td className="px-4 py-2 text-slate-600">{row.formats}</td>
-                                                        <td className="px-4 py-2 text-slate-600">{row.default}</td>
-                                                        <td className="px-4 py-2 text-slate-700">{row.bulk}</td>
-                                                    </tr>
-                                                ))}
-                                            </tbody>
-                                        </table>
+                                    <div className="text-center py-12">
+                                        <p className="text-slate-500 mb-6">📥 Export functions available in the tabs above:</p>
+                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+                                            <button onClick={exportToCSV} className="px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold">
+                                                📊 Export CSV
+                                            </button>
+                                            <button onClick={exportToXLSX} className="px-4 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 font-semibold">
+                                                📑 Export XLSX
+                                            </button>
+                                            <button onClick={exportToPNG} className="px-4 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-semibold">
+                                                🖼️ Export PNG
+                                            </button>
+                                            <button onClick={copyMethodParagraph} className="px-4 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 font-semibold">
+                                                📋 Copy Method
+                                            </button>
+                                        </div>
+                                        <p className="text-xs text-slate-400 mt-6">
+                                            All export functions work with the currently selected file ({currentText.filename})
+                                        </p>
                                     </div>
                                 </div>
                             </div>
