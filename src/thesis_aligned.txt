@@ -1,0 +1,156 @@
+# SFP Analyzer Feature Specification
+# Stylistic False Positive Analyzer - Core Feature Set (18 Features)
+# Format: Feature Number | Name | Function | Visualization | Export Format
+
+---
+
+## TIER 1: CORE FEATURES (Proposal-Aligned)
+
+FEATURE 001
+Name: Average Sentence Length
+Function: Calculate mean words per sentence across entire text
+Visualization: Horizontal bar with mean marker; vertical reference line at 15 words
+Export: CSV (raw), PNG (chart), LaTeX (table)
+
+FEATURE 002
+Name: Sentence Length Variation
+Function: Measure standard deviation of sentence lengths; detect monotony
+Visualization: Box plot showing distribution; outlier points labeled
+Export: CSV (raw), PNG (chart), XLSX (summary stats)
+
+FEATURE 003
+Name: Word Choice Profile
+Function: Analyze vocabulary patterns by frequency bands (K1/K2/off-list)
+Visualization: Stacked area chart showing band distribution across text
+Export: CSV (proportions), PNG (chart), PDF (full report)
+
+FEATURE 004
+Name: Coherence Pattern Density
+Function: Count logical connectors per 1000 words (however, therefore, furthermore)
+Visualization: Network graph showing connector relationships; density meter
+Export: CSV (counts), PNG (network), LaTeX (frequency table)
+
+---
+
+## TIER 2: PARTIALLY ALIGNED FEATURES
+
+FEATURE 005
+Name: NLP Processing Pipeline
+Function: Display tokenization, POS tagging, sentence segmentation steps
+Visualization: Vertical pipeline flow with status indicators per stage
+Export: TXT (log), CSV (token list), JSON (full annotation)
+
+FEATURE 006
+Name: Cross-Detector Comparison
+Function: Compare flags from Turnitin, GPTZero, ZeroGPT side-by-side
+Visualization: 3-column table with agreement highlights; Venn diagram overlay
+Export: CSV (binary flags), PNG (comparison chart), PDF (report)
+
+FEATURE 007
+Name: Corpus Metadata Display
+Function: Show N=70 progress, source distribution, anonymization status
+Visualization: Progress ring (70 segments); source pie chart
+Export: CSV (metadata), PNG (dashboard), XLSX (full registry)
+
+FEATURE 008
+Name: Metadiscourse Density
+Function: Count transitions, hedges, boosters, engagement markers per 1000 words
+Visualization: Grouped bar by category; trend line across text segments
+Export: CSV (category counts), PNG (bars), LaTeX (density table)
+
+FEATURE 009
+Name: Standardized Type-Token Ratio (STTR)
+Function: Measure vocabulary diversity at standardized 1000-word intervals
+Visualization: Cumulative curve with plateau detection; horizontal threshold line at 0.45
+Export: CSV (ratios), PNG (curve), PDF (diversity report)
+
+FEATURE 010
+Name: Coefficient of Variation (Burstiness)
+Function: Calculate sentence length CV; flag low variation as AI-like
+Visualization: Gauge meter 0-1.0; red zone below 0.25 (VETO RULE)
+Export: CSV (value), PNG (gauge), LaTeX (with interpretation)
+
+---
+
+## TIER 3: OPTIONAL FEATURES (Bibliography-Supported)
+
+FEATURE 011
+Name: Function Word Frequency Profile
+Function: Extract top 50/100 function words; compare to human baseline
+Visualization: Horizontal bar chart (sorted); z-score color coding
+Export: CSV (frequencies), PNG (bars), LaTeX (ranked list)
+
+FEATURE 012
+Name: Pronoun Distribution
+Function: Calculate 1st/2nd/3rd person ratios; flag identity markers
+Visualization: Donut chart (3 segments); percentage labels inside
+Export: CSV (counts), PNG (chart), XLSX (cross-text comparison)
+
+FEATURE 013
+Name: Academic Word List Coverage
+Function: Measure AWL tokens as percentage of total vocabulary
+Visualization: Progress ring (0-40%); color zones (low/medium/high)
+Export: CSV (percentage), PNG (ring), PDF (AWL token list)
+
+FEATURE 014
+Name: Readability Composite
+Function: Calculate Flesch Reading Ease, Flesch-Kincaid, Gunning Fog
+Visualization: Three score cards; grouped bar comparison
+Export: CSV (scores), PNG (cards), LaTeX (grade level table)
+
+FEATURE 015
+Name: Hedging and Boosting Ratio
+Function: Count epistemic stance markers per 100 words
+Visualization: Lollipop chart (hedges blue, boosters red); sorted frequency
+Export: CSV (counts), PNG (chart), PDF (contextual examples)
+
+FEATURE 016
+Name: Hallidayan Process Type Analysis
+Function: Classify verbs as material, mental, relational processes
+Visualization: Stacked area chart across text; 3-color process flow
+Export: CSV (proportions), PNG (area), LaTeX (process inventory)
+
+FEATURE 017
+Name: Passive Voice Density
+Function: Count passive constructions per 1000 words; detect agentless passives
+Visualization: Simple vertical bar; threshold line at 30%
+Export: CSV (count), PNG (bar), XLSX (with by-phrase tracking)
+
+FEATURE 018
+Name: Nominalization Density
+Function: Count -tion/-ness/-ment/-ity forms per 1000 words
+Visualization: Trend line across text; histogram of forms
+Export: CSV (density), PNG (trend), LaTeX (form frequency table)
+
+---
+
+## EXPORT FORMAT LEGEND
+
+CSV: Raw numerical data, comma-separated, one row per text
+XLSX: Formatted Excel workbook with multiple sheets (summary, detail, comparison)
+PNG: 300 DPI static image, ColorBrewer 2.0 palette, 12pt sans-serif
+PDF: Multi-page report with embedded charts and interpretation text
+LaTeX: Code-ready tables and figures for direct thesis insertion
+JSON: Full annotation with token-level metadata (for NLP pipeline)
+TXT: Plain text log files for processing records
+
+---
+
+## VISUALIZATION STANDARDS
+
+Color Palette: ColorBrewer 2.0 (colorblind-safe)
+Font: 12pt sans-serif throughout
+Resolution: 300 DPI minimum for all raster exports
+Chart Types by Priority: Bar > Line > Gauge > Network > Area > Donut
+Interactive: Hover tooltips showing exact values (web version)
+Static: Labeled axes, legends, captions for print version
+
+---
+
+## THRESHOLD RULES (Hardcoded)
+
+CV < 0.25: Immediate HIGH RISK classification (VETO RULE)
+STTR plateau < 0.45: Flag as potentially formulaic
+Metadiscourse < 8/1000 words: Flag as potentially AI-like
+AWL < 10% or > 40%: Review for register inconsistency
+Passive voice > 30%: Flag as potentially academic/AI hybrid

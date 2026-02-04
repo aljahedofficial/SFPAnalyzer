@@ -1,0 +1,128 @@
+# SFP Analyzer Web App - Three-Tab Architecture Mapping
+# Tab 1: Analysis (Numbers) | Tab 2: Charts (Visualizations) | Tab 3: Export (Downloads)
+
+---
+
+## TAB 1: ANALYSIS (NUMBERS)
+Display: Raw values, counts, percentages, flags, thresholds
+Layout: Table format, one row per feature, sortable columns
+
+| Feature # | Feature Name | Value | Threshold | Status | Interpretation |
+|-----------|-------------|-------|-----------|--------|----------------|
+| 001 | Average Sentence Length | 18.5 words | 15-25 | ✓ Normal | Within human range |
+| 002 | Sentence Length Variation | 12.3 SD | >8 | ✓ Normal | Good variation |
+| 003 | Word Choice Profile | K1: 82%, K2: 12%, Off: 6% | K1 < 90% | ✓ Normal | Diverse vocabulary |
+| 004 | Coherence Pattern Density | 14.2 per 1000 | 10-20 | ✓ Normal | Well-connected |
+| 005 | NLP Processing Pipeline | 4/4 stages | 4 complete | ✓ Complete | Fully processed |
+| 006 | Cross-Detector Comparison | Turnitin: 45%, GPTZero: 62%, ZeroGPT: 38% | < 50% agreement | ⚠️ Mixed | Inconsistent flags |
+| 007 | Corpus Metadata Display | 23/70 analyzed | 70 target | In progress | 32.9% complete |
+| 008 | Metadiscourse Density | 11.5 per 1000 | 8-15 | ✓ Normal | Appropriate density |
+| 009 | Standardized Type-Token Ratio | 0.52 | > 0.45 | ✓ Normal | Good diversity |
+| 010 | Coefficient of Variation | 0.19 | > 0.25 | 🚨 HIGH RISK | Low burstiness |
+| 011 | Function Word Frequency Profile | Top: the (6.2%), of (3.8%), and (2.9%) | z < |2| | ✓ Normal | Human-like profile |
+| 012 | Pronoun Distribution | 1st: 8%, 2nd: 2%, 3rd: 90% | 1st > 5% | ✓ Normal | Present author |
+| 013 | Academic Word List Coverage | 16.4% | 10-25% | ✓ Normal | Appropriate |
+| 014 | Readability Composite | Flesch: 42, FK: 12.3, Gunning: 13.1 | FK 10-14 | ✓ Normal | Graduate level |
+| 015 | Hedging and Boosting Ratio | Hedges: 3.2%, Boosters: 1.8% | Ratio 1-3:1 | ✓ Normal | Balanced stance |
+| 016 | Hallidayan Process Type Analysis | Material: 35%, Mental: 28%, Relational: 37% | Rel < 50% | ✓ Normal | Dynamic style |
+| 017 | Passive Voice Density | 31.2 per 1000 | < 30 | ⚠️ Elevated | Academic style |
+| 018 | Nominalization Density | 28.5 per 1000 | 20-40 | ✓ Normal | Formal register |
+
+Status Icons: ✓ Normal | ⚠️ Review | 🚨 HIGH RISK
+
+---
+
+## TAB 2: CHARTS (VISUALIZATIONS)
+Display: Interactive charts, one per feature, grouped by tier
+Layout: Grid with thumbnails; click to expand full view
+
+| Chart ID | Feature # | Chart Title | Chart Type | Interaction |
+|----------|-----------|-------------|------------|-------------|
+| C-001 | 001 | Average Sentence Length | Horizontal bar with mean marker | Hover: exact value |
+| C-002 | 002 | Sentence Length Distribution | Box plot with outliers | Click: outlier details |
+| C-003 | 003 | Word Choice by Frequency Band | Stacked area chart | Hover: band percentages |
+| C-004 | 004 | Coherence Connector Network | Network graph | Drag: rearrange nodes |
+| C-005 | 005 | NLP Pipeline Status | Vertical flow diagram | Click: stage details |
+| C-006 | 006 | Detector Agreement Comparison | Venn diagram + table | Hover: agreement % |
+| C-007 | 007 | Corpus Progress | Progress ring + pie | Click: source breakdown |
+| C-008 | 008 | Metadiscourse Categories | Grouped bar chart | Hover: category counts |
+| C-009 | 009 | STTR Cumulative Curve | Line chart with plateau | Zoom: segment detail |
+| C-010 | 010 | Burstiness Gauge | Gauge meter 0-1.0 | Color: red zone < 0.25 |
+| C-011 | 011 | Function Word Top 50 | Horizontal bar chart | Scroll: full ranking |
+| C-012 | 012 | Pronoun Person Distribution | Donut chart | Click: segment explode |
+| C-013 | 013 | AWL Coverage Ring | Progress ring | Hover: token examples |
+| C-014 | 014 | Readability Trio | Three score cards | Toggle: formula details |
+| C-015 | 015 | Hedging vs Boosting | Lollipop chart | Hover: context examples |
+| C-016 | 016 | Process Type Flow | Stacked area chart | Play: animation over text |
+| C-017 | 017 | Passive Voice Bar | Vertical bar | Hover: passive examples |
+| C-018 | 018 | Nominalization Trend | Line + histogram | Brush: select range |
+
+Chart Controls: Zoom | Pan | Reset | Download PNG | Fullscreen
+
+---
+
+## TAB 3: EXPORT (DOWNLOADS)
+Display: Download buttons, format selection, batch options
+Layout: Card per feature with format toggles; bulk export section
+
+| Export ID | Feature # | Feature Name | Available Formats | Default | Bulk |
+|-----------|-----------|--------------|-------------------|---------|------|
+| E-001 | 001 | Average Sentence Length | CSV, PNG, LaTeX | CSV | ✓ |
+| E-002 | 002 | Sentence Length Variation | CSV, PNG, XLSX, LaTeX | CSV | ✓ |
+| E-003 | 003 | Word Choice Profile | CSV, PNG, LaTeX, PDF | CSV | ✓ |
+| E-004 | 004 | Coherence Pattern Density | CSV, PNG, LaTeX | CSV | ✓ |
+| E-005 | 005 | NLP Processing Pipeline | TXT, CSV, JSON | JSON | ✓ |
+| E-006 | 006 | Cross-Detector Comparison | CSV, PNG, PDF, XLSX | CSV | ✓ |
+| E-007 | 007 | Corpus Metadata Display | CSV, PNG, XLSX | XLSX | ✗ |
+| E-008 | 008 | Metadiscourse Density | CSV, PNG, LaTeX, PDF | CSV | ✓ |
+| E-009 | 009 | Standardized Type-Token Ratio | CSV, PNG, LaTeX | CSV | ✓ |
+| E-010 | 010 | Coefficient of Variation | CSV, PNG, LaTeX, PDF | PNG | ✓ |
+| E-011 | 011 | Function Word Frequency Profile | CSV, PNG, LaTeX | CSV | ✓ |
+| E-012 | 012 | Pronoun Distribution | CSV, PNG, XLSX, LaTeX | CSV | ✓ |
+| E-013 | 013 | Academic Word List Coverage | CSV, PNG, PDF | CSV | ✓ |
+| E-014 | 014 | Readability Composite | CSV, PNG, LaTeX | CSV | ✓ |
+| E-015 | 015 | Hedging and Boosting Ratio | CSV, PNG, PDF | CSV | ✓ |
+| E-016 | 016 | Hallidayan Process Type Analysis | CSV, PNG, LaTeX | CSV | ✓ |
+| E-017 | 017 | Passive Voice Density | CSV, PNG, XLSX, LaTeX | CSV | ✓ |
+| E-018 | 018 | Nominalization Density | CSV, PNG, LaTeX | CSV | ✓ |
+
+Bulk Export Options:
+- All Features (CSV bundle)
+- All Charts (PNG zip)
+- Full Report (PDF)
+- Thesis Package (LaTeX zip)
+- Raw Data (JSON)
+
+---
+
+## CROSS-TAB NAVIGATION
+
+| From Tab | Action | To Tab | Result |
+|----------|--------|--------|--------|
+| Analysis | Click chart icon next to feature | Charts | Open specific chart |
+| Analysis | Click export icon next to feature | Export | Pre-select feature |
+| Charts | Click "View Data" button | Analysis | Highlight feature row |
+| Charts | Click "Export This" button | Export | Pre-select feature + PNG |
+| Export | Click "View in Analysis" link | Analysis | Jump to feature row |
+| Export | Click "Preview Chart" link | Charts | Open chart modal |
+
+---
+
+## STATE MANAGEMENT
+
+Shared State Across Tabs:
+- Selected text file (FP_01.txt to C_35.txt)
+- Current feature filter (All / Tier 1 / Tier 2 / Tier 3 / Flagged)
+- Threshold settings (editable CV cutoff, etc.)
+- Comparison mode (single text vs. two texts vs. corpus average)
+
+Tab-Specific State:
+- Analysis: Sort column, sort direction, row expansion
+- Charts: Zoom level, selected chart, animation play state
+- Export: Selected formats, download queue, progress
+
+---
+
+## PROMPT FOR DEVELOPER
+
+Implement a React-based web application with three primary tabs: Analysis, Charts, and Export. Use Recharts for visualizations, compromise.js for NLP processing, and file-saver for downloads. Maintain shared state via React Context. Ensure all 18 features are mapped as specified above. Color scheme: ColorBrewer 2.0 palette. Responsive design: minimum width 1024px for Analysis, 1200px for Charts. Accessibility: keyboard navigation, screen reader labels, high contrast mode.
