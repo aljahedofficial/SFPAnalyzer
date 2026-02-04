@@ -2965,15 +2965,7 @@ const StylisticFingerprintAnalyzer = () => {
                                     {/* Cumulative TTR Curve */}
                                     <div className="bg-white rounded-lg shadow-md p-6">
                                         <div className="flex items-center justify-between mb-4">
-                                            <div className="flex items-center justify-between mb-4">
                                             <h3 className="text-xl font-semibold text-slate-700">Cumulative Type-Token Ratio Curve</h3>
-                                            <button onClick={() => {
-                                                const chartDiv = document.querySelector('[data-chart="ttrcurve"]');
-                                                downloadChartPNG(chartDiv, 'ttrCurve.png');
-                                            }} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-semibold flex items-center gap-1">
-                                                📥 PNG
-                                            </button>
-                                        </div>
                                             <button onClick={() => {
                                                 const chartDiv = document.querySelector('[data-chart="ttrcurve"]');
                                                 downloadChartPNG(chartDiv, 'ttrcurve.png');
@@ -2997,15 +2989,7 @@ const StylisticFingerprintAnalyzer = () => {
                                     {/* Metadiscourse Distribution */}
                                     <div className="bg-white rounded-lg shadow-md p-6">
                                         <div className="flex items-center justify-between mb-4">
-                                            <div className="flex items-center justify-between mb-4">
                                             <h3 className="text-xl font-semibold text-slate-700">Metadiscourse Distribution (Hyland 2005)</h3>
-                                            <button onClick={() => {
-                                                const chartDiv = document.querySelector('[data-chart="metadiscourse"]');
-                                                downloadChartPNG(chartDiv, 'metadiscourse.png');
-                                            }} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-semibold flex items-center gap-1">
-                                                📥 PNG
-                                            </button>
-                                        </div>
                                             <button onClick={() => {
                                                 const chartDiv = document.querySelector('[data-chart="metadiscourse"]');
                                                 downloadChartPNG(chartDiv, 'metadiscourse.png');
@@ -3053,7 +3037,8 @@ const StylisticFingerprintAnalyzer = () => {
                                                 📥 PNG
                                             </button>
                                         </div>
-                                        <div className="flex flex-wrap gap-1">
+                                        <div data-chart="sentenceLengthHeatStrip">
+                                            <div className="flex flex-wrap gap-1">
                                             {currentText.sentenceLengths.map((len, idx) => {
                                                 const maxLen = Math.max(...currentText.sentenceLengths);
                                                 const intensity = Math.floor((len / maxLen) * 255);
@@ -3066,9 +3051,10 @@ const StylisticFingerprintAnalyzer = () => {
                                                     />
                                                 );
                                             })}
-                                        </div>
-                                        <div className="mt-2 text-sm text-slate-600">
-                                            Each cell represents one sentence. Color intensity indicates word count.
+                                            </div>
+                                            <div className="mt-2 text-sm text-slate-600">
+                                                Each cell represents one sentence. Color intensity indicates word count.
+                                            </div>
                                         </div>
                                     </div>
 
@@ -3083,20 +3069,22 @@ const StylisticFingerprintAnalyzer = () => {
                                                 📥 PNG
                                             </button>
                                         </div>
-                                        <ResponsiveContainer width="100%" height={300}>
-                                            <ScatterChart>
-                                                <CartesianGrid strokeDasharray="3 3" />
-                                                <XAxis dataKey="position" name="Position" label={{ value: 'Word Position', position: 'insideBottom', offset: -5 }} />
-                                                <YAxis name="New Vocabulary" label={{ value: 'Unique Word Introduction', angle: -90, position: 'insideLeft' }} />
-                                                <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-                                                <Scatter
-                                                    data={currentText.firstAppearance.map((item, idx) => ({ ...item, y: idx }))}
-                                                    fill="#8884d8"
-                                                />
-                                            </ScatterChart>
-                                        </ResponsiveContainer>
-                                        <div className="mt-2 text-sm text-slate-600">
-                                            Shows where new vocabulary items are introduced throughout the text.
+                                        <div data-chart="lexicalFirstAppearance">
+                                            <ResponsiveContainer width="100%" height={300}>
+                                                <ScatterChart>
+                                                    <CartesianGrid strokeDasharray="3 3" />
+                                                    <XAxis dataKey="position" name="Position" label={{ value: 'Word Position', position: 'insideBottom', offset: -5 }} />
+                                                    <YAxis name="New Vocabulary" label={{ value: 'Unique Word Introduction', angle: -90, position: 'insideLeft' }} />
+                                                    <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                                                    <Scatter
+                                                        data={currentText.firstAppearance.map((item, idx) => ({ ...item, y: idx }))}
+                                                        fill="#8884d8"
+                                                    />
+                                                </ScatterChart>
+                                            </ResponsiveContainer>
+                                            <div className="mt-2 text-sm text-slate-600">
+                                                Shows where new vocabulary items are introduced throughout the text.
+                                            </div>
                                         </div>
                                     </div>
 
