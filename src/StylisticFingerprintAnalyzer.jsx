@@ -110,6 +110,7 @@ const StylisticFingerprintAnalyzer = () => {
     const [pastedText, setPastedText] = useState('');
     const [isProcessing, setIsProcessing] = useState(false);
     const [showDisclosure, setShowDisclosure] = useState(true);
+    const [currentTheme, setCurrentTheme] = useState('Modern Dark');
     const [thresholds, setThresholds] = useState({
         cv: 0.25,
         sttr: 0.45,
